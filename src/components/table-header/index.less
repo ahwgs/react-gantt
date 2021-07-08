@@ -1,0 +1,45 @@
+@import '../../style/themes/index';
+@table-header-prefix-cls: ~'@{gantt-prefix}-table-header';
+
+.@{table-header-prefix-cls} {
+  position: absolute;
+  top: 0;
+  left: 0;
+  overflow: hidden;
+
+  &-head {
+    position: relative;
+  }
+
+  &-row {
+    position: absolute;
+    left: 0;
+    display: flex;
+    transition: height 0.3s;
+    width: 100%;
+  }
+
+  &-cell {
+    position: relative;
+    display: flex;
+    border-right: 1px solid #f0f0f0;
+  }
+
+  &-head-cell {
+    display: flex;
+    flex: 1;
+    align-items: center;
+    overflow: hidden;
+    padding: 0 12px;
+    user-select: none;
+    font-size: 14px;
+    color: #2e405e;
+  }
+
+  &-ellipsis {
+    flex: 1;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+}

@@ -1,0 +1,89 @@
+{
+  "name": "rc-gantt",
+  "author": "ahwgs <ah_wgs@126.com>",
+  "homepage": "https://github.com/ahwgs/react-gantt",
+  "engines": {
+    "node": ">=10"
+  },
+  "version": "0.0.7",
+  "license": "MIT",
+  "main": "dist/index.js",
+  "module": "dist/rc-gantt.esm.js",
+  "typings": "dist/index.d.ts",
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "start": "tsdx watch",
+    "build": "tsdx build",
+    "test": "tsdx test --passWithNoTests",
+    "lint": "tsdx lint",
+    "prepare": "tsdx build",
+    "release": "conventional-changelog -p angular -i CHANGELOG.md -s && git add CHANGELOG.md"
+  },
+  "peerDependencies": {
+    "react": ">=16"
+  },
+  "husky": {
+    "hooks": {
+      "commit-msg": "commitlint -E HUSKY_GIT_PARAMS",
+      "pre-commit": "lint-staged"
+    }
+  },
+  "config": {
+    "commitizen": {
+      "path": "node_modules/cz-customizable"
+    }
+  },
+  "lint-staged": {
+    "*.{js,json,md,tsx,ts}": [
+      "prettier --write",
+      "git add"
+    ],
+    "*.ts?(x)": [
+      "prettier --write",
+      "eslint --fix",
+      "git add"
+    ]
+  },
+  "devDependencies": {
+    "@babel/core": "^7.12.9",
+    "@babel/plugin-transform-typescript": "^7.14.6",
+    "@commitlint/cli": "^12.1.4",
+    "@commitlint/config-conventional": "^12.1.4",
+    "@osdoc-dev/avenger-cli": "^0.2.0",
+    "@osdoc-dev/eslint-config-preset-prettier": "^0.3.1",
+    "@osdoc-dev/eslint-config-preset-react": "^0.3.1",
+    "@types/classnames": "^2.2.11",
+    "@types/lodash": "^4.14.165",
+    "@types/react": "^17.0.0",
+    "@types/react-dom": "^17.0.0",
+    "babel-loader": "^8.2.2",
+    "commitizen": "^4.2.4",
+    "conventional-changelog-cli": "^2.1.1",
+    "cz-customizable": "^6.3.0",
+    "husky": "^4.3.6",
+    "identity-obj-proxy": "^3.0.0",
+    "less": "^3.12.2",
+    "less-loader": "^7.1.0",
+    "lint-staged": "^11.0.0",
+    "postcss": "^8.1.14",
+    "postcss-url": "^10.1.1",
+    "react": "^17.0.1",
+    "react-dom": "^17.0.1",
+    "react-is": "^17.0.1",
+    "rollup-plugin-postcss": "^4.0.0",
+    "tsdx": "^0.14.1",
+    "tslib": "^2.0.3",
+    "typescript": "^3.9.7"
+  },
+  "dependencies": {
+    "ahooks": "^2.9.2",
+    "classnames": "^2.2.6",
+    "dayjs": "^1.9.7",
+    "lodash": "^4.17.20",
+    "lodash-es": "^4.17.21",
+    "mobx": "4.7.0",
+    "mobx-react-lite": "1.5.2"
+  }
+}

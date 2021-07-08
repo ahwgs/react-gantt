@@ -1,0 +1,178 @@
+@import '../../style/themes/index';
+@task-bar-prefix-cls: ~'@{gantt-prefix}-task-bar';
+
+.@{task-bar-prefix-cls} {
+  position: absolute;
+  top: 0;
+  left: 0;
+  display: flex;
+
+  &-loading {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    cursor: not-allowed;
+    z-index: 9;
+  }
+
+  &-bar {
+    position: relative;
+    height: 8px;
+    line-height: 8px;
+    border-radius: 4px;
+    top: -1px;
+    cursor: pointer;
+  }
+
+  &-invalid-date-range {
+    display: none;
+  }
+
+
+  &-resize-bg {
+    position: absolute;
+    left: 0;
+    top: -5px;
+    border-radius: 4px;
+    box-shadow: 0 2px 4px 0 #f7f7f7;
+    border: 1px solid #f0f0f0;
+    background-color: #fff;
+
+    &-compact {
+      height: 17px
+    }
+  }
+
+  &-resize-handle {
+    position: absolute;
+    left: 0;
+    top: -4px;
+    width: 14px;
+    height: 16px;
+    z-index: 3;
+    background: white;
+
+    &:after,
+    &:before {
+      position: absolute;
+      top: 4px;
+      bottom: 16px;
+      width: 2px;
+      height: 8px;
+      border-radius: 2px;
+      background-color: #d9d9d9;
+      content: ""
+    }
+
+    &-disabled{
+      cursor: not-allowed!important;
+    }
+
+    &-left {
+      cursor: col-resize;
+
+      &:before {
+        left: 4px
+      }
+
+      &:after {
+        right: 4px
+      }
+    }
+
+
+    &-right {
+      cursor: col-resize;
+
+      &:before {
+        left: 4px
+      }
+
+      &:after {
+        right: 4px
+      }
+    }
+  }
+
+
+
+  &-date-text {
+    color: #262626
+  }
+
+  &-date-text,
+  &-label {
+    position: absolute;
+    white-space: nowrap;
+    font-size: 12px;
+    top: -6px;
+  }
+
+  &-label {
+    overflow: hidden;
+    max-width: 200px;
+    color: #595959;
+    text-overflow: ellipsis;
+    word-break: keep-all;
+    line-height: 16px;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    height: 16px;
+    cursor: pointer;
+    top: -14px;
+  }
+
+  // &-dependency-handle {
+  //   position: absolute;
+  //   top: -5px;
+  //   left: 0;
+  //   cursor: pointer;
+  //   height: 18px;
+  //   z-index: 1;
+
+  //   &:hover {
+  //     .inner {
+  //       fill: #1b9aee
+  //     }
+  //   }
+
+  //   &.right {
+  //     text-align: right
+  //   }
+
+  //   &.loose {
+  //     top: 0
+  //   }
+  // }
+
+
+  // .done .dependency-handle .outer {
+  //   stroke: #d9d9d9
+  // }
+
+  // .done .dependency-handle .inner {
+  //   fill: #d9d9d9
+  // }
+
+  // .done .dependency-handle:hover .inner {
+  //   fill: #8c8c8c
+  // }
+}
+
+// .overdue {
+//   .dependency-handle .outer {
+//     stroke: #fcc
+//   }
+
+//   .dependency-handle .inner {
+//     fill: #fd998f
+//   }
+
+//   .dependency-handle:hover .inner {
+//     fill: #f87872
+//   }
+// }

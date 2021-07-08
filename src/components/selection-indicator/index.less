@@ -1,0 +1,10 @@
+@import '../../style/themes/index';
+@selection-indicator-prefix-cls: ~'@{gantt-prefix}-selection-indicator';
+
+.@{selection-indicator-prefix-cls} {
+  position: absolute;
+  width: 100%;
+  background: rgba(0, 0, 0, 0.04);
+  pointer-events: none;
+  z-index: 10;
+}

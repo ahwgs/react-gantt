@@ -1,0 +1,17 @@
+@import '../../style/themes/index';
+@scroll-top-prefix-cls: ~'@{gantt-prefix}-scroll_top';
+
+.@{scroll-top-prefix-cls} {
+  position: absolute;
+  right: 24px;
+  bottom: 8px;
+  width: 40px;
+  height: 40px;
+  cursor: pointer;
+  background-image: url('./Top.svg');
+  background-size: contain;
+
+  &:hover {
+    background-image: url('./Top_hover.svg');
+  }
+}
