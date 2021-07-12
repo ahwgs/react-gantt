@@ -5,7 +5,7 @@ import { Gantt } from './types'
  *
  * @param {any} arr 数据源
  */
-export function flattenDeep(array: Gantt.Item[] = [], depth = 0, parent: Gantt.Item | undefined): Gantt.Item[] {
+export function flattenDeep(array: Gantt.Item[] = [], depth = 0, parent?: Gantt.Item | undefined): Gantt.Item[] {
   let index = 0
   return array.reduce((flat: Gantt.Item[], item) => {
     item._depth = depth
@@ -31,11 +31,8 @@ export function getMaxRange(bar: Gantt.Bar) {
         minTranslateX = Math.min(translateX, minTranslateX)
         maxTranslateX = Math.max(translateX + width, maxTranslateX)
       }
-      if (current.task.children && current.task.children.length > 0) {
-        for (const t of current.task.children) {
-          if (t._bar) temporary.push(t._bar)
-        }
-      }
+      if (current.task.children && current.task.children.length > 0)
+        for (const t of current.task.children) if (t._bar) temporary.push(t._bar)
     }
   }
 

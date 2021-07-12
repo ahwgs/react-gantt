@@ -32,7 +32,7 @@ const Body: React.FC = ({ children }) => {
     </div>
   )
 }
-export interface GanttProperties<RecordType = DefaultRecordType> {
+export interface GanttProps<RecordType = DefaultRecordType> {
   data: Gantt.Record<RecordType>[]
   columns: Gantt.Column[]
   dependencies?: Gantt.Dependence[]
@@ -62,7 +62,7 @@ export interface GanttReference {
   backToday: () => void
   getWidthByDate: (startDate: Dayjs, endDate: Dayjs) => number
 }
-const GanttComponent = <RecordType extends DefaultRecordType>(properties: GanttProperties<RecordType>) => {
+const GanttComponent = <RecordType extends DefaultRecordType>(properties: GanttProps<RecordType>) => {
   const {
     data,
     columns,
