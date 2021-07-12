@@ -1,8 +1,25 @@
-import 'react-app-polyfill/ie11'
-import * as React from 'react'
-import * as ReactDOM from 'react-dom'
-import RcGantt from '../.'
-import '../dist/rc-gantt.cjs.development.css'
+---
+title: 'React Gantt Component'
+hero:
+  title: 'rc-gantt'
+  desc: Gantt组件
+  actions:
+    - text: 快速上手 →
+      link: /component
+
+footer: Open-source MIT Licensed | Copyright © 2021<br />
+---
+
+## 快速使用
+
+```bash
+# 安装依赖
+$ yarn add rc-gantt
+
+# 使用组件
+
+import GanttComponent, { GanttProps } from 'rc-gantt'
+import 'rc-gantt/dist/rc-gantt.cjs.production.min.css'
 
 const data = new Array(100).fill({
   name: '一个名称一个名称一个名称一个名称',
@@ -37,12 +54,16 @@ const App = () => {
         onUpdate={async () => {
           return true
         }}
-        alwaysShowTaskBar
-        renderLeftText={() => <span>left</span>}
-        renderRightText={() => <span>right</span>}
       />
     </div>
   )
 }
 
 ReactDOM.render(<App />, document.getElementById('root'))
+```
+
+## 问题反馈
+
+请访问 [Github](https://github.com/ahwgs/react-gantt/issues) 或加微信，备注 `rc-gantt`
+
+<img src='https://static.ahwgs.cn/wp-content/uploads/2020/03/%E5%BE%AE%E4%BF%A1%E5%9B%BE%E7%89%87_20200311210541.jpg' style='width:200px'/>
