@@ -1,148 +1,70 @@
-# 基于 React 的甘特图组件
+<div align="center">
+    <a href="#" target="_blank">
+    <img src="https://static.ahwgs.cn/gantt_logo.png" alt="Logo" width="160" height="80">
+    </a>
+    <h2>rc-gantt</h2>
+    <p align="center">React Gantt Component</p>
 
-## 使用
+</div>
 
-### 安装
+## 官网
 
-使用 yarn
+[https://ahwgs.github.io/react-gantt/#/](https://ahwgs.github.io/react-gantt/#/)
+
+## 快速使用
 
 ```bash
-yarn add rc-gantt
+# 安装依赖
+$ yarn add rc-gantt
+
+# 使用组件
+
+import GanttComponent, { GanttProps } from 'rc-gantt'
+import 'rc-gantt/dist/rc-gantt.cjs.production.min.css'
+
+const data = new Array(100).fill({
+  name: '一个名称一个名称一个名称一个名称',
+  startDate: '2021-07-10',
+  endDate: '2021-07-12',
+  collapsed: false,
+  children: [
+    {
+      startDate: '2021-07-10',
+      endDate: '2021-07-12',
+      name: '一个名称',
+      collapsed: false,
+      content: '123123123',
+    },
+  ],
+})
+
+const App = () => {
+  return (
+    <div style={{ width: '100%', height: 500 }}>
+      <RcGantt
+        data={data}
+        columns={[
+          {
+            name: 'name',
+            label: '名称',
+            width: 200,
+            maxWidth: 200,
+            minWidth: 200,
+          },
+        ]}
+        onUpdate={async () => {
+          return true
+        }}
+      />
+    </div>
+  )
+}
+
+ReactDOM.render(<App />, document.getElementById('root'))
 ```
 
-使用 npm
+## 问题反馈
 
-```bash
-npm install rc-gantt --save
-```
+请访问 [Github](https://github.com/ahwgs/react-gantt/issues) 或加微信，备注 `rc-gantt`
 
-### 基本使用
-
-```js
-import React from 'react'
-import ReactDOM from 'react-dom'
-import Gantt from 'rc-gantt'
-
-ReactDOM.render(
-  <div style={{ width: '100%', height: 500 }}>
-    <Gantt
-      data={[
-        {
-          name: '一个名称',
-          startDate: '2020-10-01',
-          endDate: '2020-10-08',
-          collapsed: false,
-          children: [
-            {
-              startDate: '2020-10-01',
-              endDate: '2020-10-08',
-              name: '一个名称',
-              collapsed: false,
-            },
-          ],
-        },
-      ]}
-      columns={[
-        {
-          name: 'name',
-          label: '名称',
-        },
-      ]}
-      onUpdate={async () => {
-        return true
-      }}
-    />
-  </div>,
-  document.getElementById('root')
-)
-```
-
-<h2 align="center">配置项</h2>
-
-### `data`
-
-甘特图的数据
-
-### `startDateKey`
-
-- 默认: `startDate`
-
-开始时间对应的 key
-
-### `endDateKey`
-
-- 默认: `endDate`
-
-结束时间对应的 key
-
-### `columns`
-
-table 的列配置
-
-### `onUpdate`
-
-时间更新的回调，返回 true 代表修改成功
-
-### `isRestDay`
-
-- 默认: 周六和周日节假日
-
-甘特图的节假日判断，返回 true 代表节假日
-
-### `getBarColor`
-
-任务条的颜色配置
-
-### `showBackToday`
-
-- 默认: `true`
-
-是否展示回到今天的按钮
-
-### `showUnitSwitch`
-
-- 默认: `true`
-
-是否展示单位切换按钮
-
-### `unit`
-
-- 默认: `day`
-
-单位，可选的值有`day`,`week`,`month`,`quarter`,`halfYear`
-
-### `onRow`
-
-table 的行事件配置，目前支持 onClick
-
-### `tableIndent`
-
-- 默认: `30`
-
-table 每一级的缩进
-
-### `expandIcon`
-
-table 展开图标
-
-### `renderBar`
-
-任务条自定义渲染
-
-### `renderBarThumb`
-
-创建时的任务条自定义渲染
-
-### `onBarClick`
-
-任务条点击回调
-
-### `tableCollapseAble`
-
-- 默认: `true`
-
-是否可以收起 table
-
-### `disabled`
-
-是否禁用编辑
+<img src='https://static.ahwgs.cn/wp-content/uploads/2020/03/%E5%BE%AE%E4%BF%A1%E5%9B%BE%E7%89%87_20200311210541.jpg' style='width:200px'/>

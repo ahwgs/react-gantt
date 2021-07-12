@@ -1,7 +1,7 @@
 {
   "name": "rc-gantt",
   "author": "ahwgs <ah_wgs@126.com>",
-  "homepage": "https://github.com/ahwgs/react-gantt",
+  "homepage": "https://ahwgs.github.io/react-gantt/#/",
   "engines": {
     "node": ">=10"
   },
