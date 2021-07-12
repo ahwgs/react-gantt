@@ -1,0 +1,21 @@
+name: Node.js Package
+# master push
+on:
+  push:
+    tags:
+    - 'v*'
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+    - run: |
+        npm config set registry http://registry.npmjs.org
+        npm config set //registry.npmjs.org/:_authToken ${{ secrets.NPM_TOKEN }}
+    - run: |
+        git config --global user.email "ah_wgs@126.com"
+        git config --global user.name "ahwgs"
+
+    - run: npm publish
+
