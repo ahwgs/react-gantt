@@ -37,6 +37,7 @@ const App = () => {
         onUpdate={async () => {
           return true
         }}
+        alwaysShowTaskBar
       />
     </div>
   )

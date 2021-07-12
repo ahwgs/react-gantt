@@ -57,12 +57,13 @@ export interface GanttProps<RecordType = DefaultRecordType> {
   tableCollapseAble?: GanttContext<RecordType>['tableCollapseAble']
   scrollTop?: GanttContext<RecordType>['scrollTop']
   disabled?: boolean
+  alwaysShowTaskBar?: boolean
 }
 export interface GanttRef {
   backToday: () => void
   getWidthByDate: (startDate: Dayjs, endDate: Dayjs) => number
 }
-const GanttComponent = <RecordType extends DefaultRecordType>(properties: GanttProps<RecordType>) => {
+const GanttComponent = <RecordType extends DefaultRecordType>(props: GanttProps<RecordType>) => {
   const {
     data,
     columns,
@@ -88,7 +89,8 @@ const GanttComponent = <RecordType extends DefaultRecordType>(properties: GanttP
     rowHeight = ROW_HEIGHT,
     innerRef,
     disabled = false,
-  } = properties
+    alwaysShowTaskBar = true,
+  } = props
   const store = useMemo(() => new GanttStore({ rowHeight, disabled }), [rowHeight])
   useEffect(() => {
     store.setData(data, startDateKey, endDateKey)
@@ -132,6 +134,7 @@ const GanttComponent = <RecordType extends DefaultRecordType>(properties: GanttP
       renderBarThumb,
       scrollTop,
       barHeight: BAR_HEIGHT,
+      alwaysShowTaskBar,
     }),
     [
       store,
@@ -148,6 +151,7 @@ const GanttComponent = <RecordType extends DefaultRecordType>(properties: GanttP
       tableCollapseAble,
       renderBarThumb,
       scrollTop,
+      alwaysShowTaskBar,
     ]
   )
 

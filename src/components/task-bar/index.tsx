@@ -15,7 +15,7 @@ interface TaskBarProps {
 }
 
 const TaskBar: React.FC<TaskBarProps> = ({ data }) => {
-  const { store, getBarColor, renderBar, onBarClick, prefixCls, barHeight } = useContext(Context)
+  const { store, getBarColor, renderBar, onBarClick, prefixCls, barHeight, alwaysShowTaskBar } = useContext(Context)
   const {
     width,
     translateX,
@@ -98,6 +98,7 @@ const TaskBar: React.FC<TaskBarProps> = ({ data }) => {
   const reachEdge = usePersistFn((position: 'left' | 'right') => position === 'left' && store.translateX <= 0)
   // 根据不同的视图确定拖动时的单位，在任何视图下都以一天为单位
   const grid = useMemo(() => ONE_DAY_MS / store.pxUnitAmp, [store.pxUnitAmp])
+
   return (
     <div
       role='none'
@@ -238,12 +239,12 @@ const TaskBar: React.FC<TaskBarProps> = ({ data }) => {
           )}
         </DragResize>
       </div>
-      {(allowDrag || disabled) && (
+      {(allowDrag || disabled || alwaysShowTaskBar) && (
         <div className={`${prefixClsTaskBar}-label`} style={{ left: width / 2 - 10 }}>
           {getDateWidth(translateX + width, translateX)}天
         </div>
       )}
-      {(stepGesture === 'moving' || allowDrag || disabled) && (
+      {(stepGesture === 'moving' || allowDrag || disabled || alwaysShowTaskBar) && (
         <>
           <div className={`${prefixClsTaskBar}-date-text`} style={{ left: width + 16 }}>
             {dateTextFormat(translateX + width)}
