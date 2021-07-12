@@ -12,55 +12,37 @@ footer: Open-source MIT Licensed | Copyright © 2021<br />
 
 ## 快速使用
 
-```bash
-# 安装依赖
-$ yarn add rc-gantt
+## 📦 安装依赖
 
-# 使用组件
+```shell
+$ yarn add rc-gantt  # or npm i rc-gantt -S
+```
 
-import GanttComponent, { GanttProps } from 'rc-gantt'
+## 🔨 快速开始
+
+```tsx
+import RcGantt from 'rc-gantt'
 import 'rc-gantt/dist/rc-gantt.cjs.production.min.css'
 
-const data = new Array(100).fill({
-  name: '一个名称一个名称一个名称一个名称',
-  startDate: '2021-07-10',
-  endDate: '2021-07-12',
-  collapsed: false,
-  children: [
-    {
-      startDate: '2021-07-10',
-      endDate: '2021-07-12',
-      name: '一个名称',
-      collapsed: false,
-      content: '123123123',
-    },
-  ],
-})
-
-const App = () => {
-  return (
-    <div style={{ width: '100%', height: 500 }}>
-      <RcGantt
-        data={data}
-        columns={[
-          {
-            name: 'name',
-            label: '名称',
-            width: 200,
-            maxWidth: 200,
-            minWidth: 200,
-          },
-        ]}
-        onUpdate={async () => {
-          return true
-        }}
-      />
-    </div>
-  )
-}
-
-ReactDOM.render(<App />, document.getElementById('root'))
+// in react page
+return (
+  <RcGantt
+    data={data}
+    columns={[
+      {
+        name: 'name',
+        label: '名称',
+        width: 200,
+      },
+    ]}
+    onUpdate={async () => {
+      return true
+    }}
+  />
+)
 ```
+
+查看更多：[基础使用](/component#基础使用)
 
 ## 问题反馈
 

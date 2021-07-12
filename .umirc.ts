@@ -1,4 +1,13 @@
 import { defineConfig } from 'dumi'
+
+import fs from 'fs'
+import path from 'path'
+
+const resolveCss = () => {
+  const data = fs.readFileSync(path.resolve(__dirname, './website/global.css'), 'utf-8')
+  return data.toString()
+}
+
 export default defineConfig({
   title: ' ',
   mode: 'site',
@@ -8,7 +17,6 @@ export default defineConfig({
   },
   locales: [['zh-CN', '中文']],
   logo: 'https://static.ahwgs.cn/gantt_logo.png',
-  favicon: './website/favicon.ico',
   navs: [
     null,
     {
@@ -23,4 +31,5 @@ export default defineConfig({
   base: '/react-gantt',
   publicPath: '/react-gantt/',
   outputPath: './dist-website',
+  styles: [resolveCss()],
 })
