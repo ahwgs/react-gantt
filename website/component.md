@@ -130,8 +130,8 @@ export type Sight = 'day' | 'week' | 'month' | 'quarter' | 'halfYear'
 | tableIndent | 表格缩进 | `number` | `30` |
 | expandIcon | 展开子节点图表 | `` |
 | renderBar | 自定义渲染 bar | `renderBar?: (barInfo: Gantt.Bar<RecordType>, { width, height }: { width: number; height: number }) => React.ReactNode` |
-| renderGroupBar | 自定义渲染组 | 1 |
-| renderInvalidBar | 自定义渲染拖拽 | 1 |
+| renderGroupBar | 自定义渲染组 |  |
+| renderInvalidBar | 自定义渲染拖拽 |  |
 | renderBarThumb | 自定义缩略渲染 |  |
 | onBarClick | 行点击事件 | `(record: Gantt.Record<RecordType>) => void` |
 | alwaysShowTaskBar | 是否展示左右侧内容 | `boolean` | `true` |

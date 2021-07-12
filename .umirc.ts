@@ -1,13 +1,13 @@
 import { defineConfig } from 'dumi'
 export default defineConfig({
-  title: 'rc-gantt',
+  title: ' ',
   mode: 'site',
   resolve: {
     includes: ['./website'],
     previewLangs: [],
   },
   locales: [['zh-CN', '中文']],
-  logo: 'https://static.ahwgs.cn/avenger_logo.jpeg',
+  logo: 'https://static.ahwgs.cn/gantt_logo.png',
   favicon: './website/favicon.ico',
   navs: [
     null,
