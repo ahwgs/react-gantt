@@ -9,36 +9,35 @@
 
   &:hover {
     hr {
-      border-color: #5365EA;
+      border-color: #3b88f4;
 
       &:before {
-        background: #5365EA;
+        background: #3b88f4;
       }
     }
 
     .@{divider-prefix-cls}-icon-wrapper {
-      background-color: #5365EA;
-      border-color: #5365EA;
+      background-color: #3b88f4;
+      border-color: #3b88f4;
       border-top: 0;
       border-bottom: 0;
       cursor: pointer;
 
       &:after {
-        content: "";
+        content: '';
         right: -3px;
         position: absolute;
         width: 2px;
         height: 30px;
-        background-color: transparent
+        background-color: transparent;
       }
 
       .@{divider-prefix-cls}-arrow:after,
       .@{divider-prefix-cls}-arrow:before {
-        background-color: #fff
+        background-color: #fff;
       }
     }
   }
-
 
   & > hr {
     margin: 0;
@@ -47,7 +46,6 @@
     border: none;
     border-right: 1px solid transparent;
   }
-
 
   & > &-icon-wrapper {
     position: absolute;
@@ -67,31 +65,31 @@
 
   &-arrow:before {
     bottom: -1px;
-    transform: rotate(30deg)
+    transform: rotate(30deg);
   }
 
   &-arrow:after {
     top: -1px;
-    transform: rotate(-30deg)
+    transform: rotate(-30deg);
   }
 
   &-arrow:after,
   &-arrow:before {
-    content: "";
+    content: '';
     display: block;
     position: relative;
     width: 2px;
     height: 8px;
     background-color: #bfbfbf;
-    border-radius: 1px
+    border-radius: 1px;
   }
 
   &-arrow&-reverse:before {
-    transform: rotate(-30deg)
+    transform: rotate(-30deg);
   }
 
   &-arrow&-reverse:after {
-    transform: rotate(30deg)
+    transform: rotate(30deg);
   }
 }
 
@@ -100,7 +98,7 @@
   position: absolute;
   border-top: 7px solid white;
   border-bottom: 7px solid white;
-  background: #A7ADD0;
+  background: #a7add0;
   z-index: 2;
   height: 26px;
   top: 50%;
@@ -109,5 +107,5 @@
 }
 
 .@{divider-prefix-cls}_only > hr {
-  border-color: #A7ADD0;
+  border-color: #a7add0;
 }

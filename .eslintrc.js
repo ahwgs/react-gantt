@@ -24,5 +24,6 @@ module.exports = {
     'arrow-parens': 0,
     '@typescript-eslint/no-redeclare': 0,
     'no-underscore-dangle': 0,
+    '@typescript-eslint/no-namespace': 0,
   },
 }

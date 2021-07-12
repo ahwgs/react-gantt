@@ -842,6 +842,12 @@ class GanttStore {
       barInfo.translateX = oldSize.x
     }
   }
+
+  isToday(key: string) {
+    const now = dayjs().format('YYYY-MM-DD')
+    const target = dayjs(key).format('YYYY-MM-DD')
+    return target === now
+  }
 }
 
 export default GanttStore

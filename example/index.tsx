@@ -1,8 +1,8 @@
-import 'react-app-polyfill/ie11';
-import * as React from 'react';
-import * as ReactDOM from 'react-dom';
-import GanttComponent from '../.';
-import '../dist/rc-gantt.cjs.development.css';
+import 'react-app-polyfill/ie11'
+import * as React from 'react'
+import * as ReactDOM from 'react-dom'
+import GanttComponent from '../.'
+import '../dist/rc-gantt.cjs.development.css'
 
 const data = new Array(100).fill({
   name: '一个名称一个名称一个名称一个名称',
@@ -19,7 +19,7 @@ const data = new Array(100).fill({
       content: '123123123',
     },
   ],
-});
+})
 
 const App = () => {
   return (
@@ -57,17 +57,16 @@ const App = () => {
           },
         ]}
         onUpdate={async () => {
-          return true;
+          return true
         }}
         getBarColor={() => ({
           backgroundColor: 'red',
           borderColor: 'red',
         })}
-        contentLock={true}
-        renderBarThumb={(record) => record.content}
+        renderBarThumb={record => record.content}
       />
     </div>
-  );
-};
+  )
+}
 
-ReactDOM.render(<App />, document.getElementById('root'));
+ReactDOM.render(<App />, document.getElementById('root'))
