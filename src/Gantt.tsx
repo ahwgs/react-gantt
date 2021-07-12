@@ -58,6 +58,8 @@ export interface GanttProps<RecordType = DefaultRecordType> {
   scrollTop?: GanttContext<RecordType>['scrollTop']
   disabled?: boolean
   alwaysShowTaskBar?: boolean
+  renderLeftText?: GanttContext<RecordType>['renderLeftText']
+  renderRightText?: GanttContext<RecordType>['renderLeftText']
 }
 export interface GanttRef {
   backToday: () => void
@@ -90,6 +92,8 @@ const GanttComponent = <RecordType extends DefaultRecordType>(props: GanttProps<
     innerRef,
     disabled = false,
     alwaysShowTaskBar = true,
+    renderLeftText,
+    renderRightText,
   } = props
   const store = useMemo(() => new GanttStore({ rowHeight, disabled }), [rowHeight])
   useEffect(() => {
@@ -135,6 +139,8 @@ const GanttComponent = <RecordType extends DefaultRecordType>(props: GanttProps<
       scrollTop,
       barHeight: BAR_HEIGHT,
       alwaysShowTaskBar,
+      renderLeftText,
+      renderRightText,
     }),
     [
       store,
@@ -152,6 +158,8 @@ const GanttComponent = <RecordType extends DefaultRecordType>(props: GanttProps<
       renderBarThumb,
       scrollTop,
       alwaysShowTaskBar,
+      renderLeftText,
+      renderRightText,
     ]
   )
 

@@ -38,6 +38,8 @@ const App = () => {
           return true
         }}
         alwaysShowTaskBar
+        renderLeftText={() => <span>left</span>}
+        renderRightText={() => <span>right</span>}
       />
     </div>
   )

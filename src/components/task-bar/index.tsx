@@ -15,7 +15,17 @@ interface TaskBarProps {
 }
 
 const TaskBar: React.FC<TaskBarProps> = ({ data }) => {
-  const { store, getBarColor, renderBar, onBarClick, prefixCls, barHeight, alwaysShowTaskBar } = useContext(Context)
+  const {
+    store,
+    getBarColor,
+    renderBar,
+    onBarClick,
+    prefixCls,
+    barHeight,
+    alwaysShowTaskBar,
+    renderLeftText,
+    renderRightText,
+  } = useContext(Context)
   const {
     width,
     translateX,
@@ -244,13 +254,13 @@ const TaskBar: React.FC<TaskBarProps> = ({ data }) => {
           {getDateWidth(translateX + width, translateX)}天
         </div>
       )}
-      {(stepGesture === 'moving' || allowDrag || disabled || alwaysShowTaskBar) && (
+      {(stepGesture === 'moving' || allowDrag || alwaysShowTaskBar) && (
         <>
           <div className={`${prefixClsTaskBar}-date-text`} style={{ left: width + 16 }}>
-            {dateTextFormat(translateX + width)}
+            {renderRightText ? renderRightText(data) : dateTextFormat(translateX + width)}
           </div>
           <div className={`${prefixClsTaskBar}-date-text`} style={{ right: width + 16 }}>
-            {dateTextFormat(translateX)}
+            {renderLeftText ? renderLeftText(data) : dateTextFormat(translateX)}
           </div>
         </>
       )}

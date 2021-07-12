@@ -36,6 +36,8 @@ export interface GanttContext<RecordType = DefaultRecordType> {
   tableCollapseAble: boolean
   scrollTop: boolean | React.CSSProperties
   alwaysShowTaskBar?: boolean
+  renderLeftText?: (barInfo: Gantt.Bar<RecordType>) => React.ReactNode
+  renderRightText?: (barInfo: Gantt.Bar<RecordType>) => React.ReactNode
 }
 const context = createContext<GanttContext>({} as GanttContext)
 export default context
