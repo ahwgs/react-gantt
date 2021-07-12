@@ -5,7 +5,7 @@
   "engines": {
     "node": ">=10"
   },
-  "version": "0.0.8",
+  "version": "0.0.9",
   "license": "MIT",
   "main": "dist/index.js",
   "module": "dist/rc-gantt.esm.js",
@@ -18,8 +18,7 @@
     "build": "tsdx build",
     "test": "tsdx test --passWithNoTests",
     "lint": "tsdx lint",
-    "prepare": "tsdx build",
-    "release": "conventional-changelog -p angular -i CHANGELOG.md -s && git add CHANGELOG.md && npm publish"
+    "prepare": "tsdx build"
   },
   "peerDependencies": {
     "react": ">=16"
