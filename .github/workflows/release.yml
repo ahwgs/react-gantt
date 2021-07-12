@@ -17,5 +17,6 @@ jobs:
         git config --global user.email "ah_wgs@126.com"
         git config --global user.name "ahwgs"
 
-    - run: npm publish
+    - run: npm install
+    - run: npm release
 

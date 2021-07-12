@@ -19,7 +19,7 @@
     "test": "tsdx test --passWithNoTests",
     "lint": "tsdx lint",
     "prepare": "tsdx build",
-    "release": "conventional-changelog -p angular -i CHANGELOG.md -s && git add CHANGELOG.md"
+    "release": "conventional-changelog -p angular -i CHANGELOG.md -s && git add CHANGELOG.md && npm publish"
   },
   "peerDependencies": {
     "react": ">=16"
