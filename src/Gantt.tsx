@@ -42,7 +42,7 @@ export interface GanttProps<RecordType = DefaultRecordType> {
   isRestDay?: (date: string) => boolean
   unit?: Gantt.Sight
   rowHeight?: number
-  innerRef?: React.MutableRefObject<GanttReference>
+  innerRef?: React.MutableRefObject<GanttRef>
   getBarColor?: GanttContext<RecordType>['getBarColor']
   showBackToday?: GanttContext<RecordType>['showBackToday']
   showUnitSwitch?: GanttContext<RecordType>['showUnitSwitch']
@@ -58,7 +58,7 @@ export interface GanttProps<RecordType = DefaultRecordType> {
   scrollTop?: GanttContext<RecordType>['scrollTop']
   disabled?: boolean
 }
-export interface GanttReference {
+export interface GanttRef {
   backToday: () => void
   getWidthByDate: (startDate: Dayjs, endDate: Dayjs) => number
 }
