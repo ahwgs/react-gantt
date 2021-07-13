@@ -30,6 +30,8 @@ nav:
 
 ### 高级用法
 
+主要介绍 `alwaysShowTaskBar` `unit` 以及 `innerRef` 上内置方法的使用
+
 <code src="./demo/custom.tsx"></code>
 
 ## 类型定义
