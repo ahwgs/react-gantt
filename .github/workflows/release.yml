@@ -18,5 +18,6 @@ jobs:
         git config --global user.name "ahwgs"
 
     - run: npm install
+    - run: npm build
     - run: npm publish
 

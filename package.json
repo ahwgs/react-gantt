@@ -8,20 +8,16 @@
   "version": "0.1.2",
   "license": "MIT",
   "main": "dist/index.js",
-  "module": "dist/rc-gantt.esm.js",
-  "typings": "dist/index.d.ts",
+  "module": "dist/index.esm.js",
+  "typings": "dist/types/index.d.ts",
   "files": [
     "dist"
   ],
   "scripts": {
-    "start": "tsdx watch",
-    "build": "tsdx build",
-    "test": "tsdx test --passWithNoTests",
-    "lint": "tsdx lint",
-    "prepare": "tsdx build",
+    "start": "avenger build --watch",
+    "build": "avenger build",
     "start:website": "dumi dev",
-    "build:website": "dumi build",
-    "gh-pages": "gh-pages -d dist-website"
+    "build:website": "dumi build"
   },
   "peerDependencies": {
     "react": ">=16"
@@ -65,7 +61,6 @@
     "conventional-changelog-cli": "^2.1.1",
     "cz-customizable": "^6.3.0",
     "dumi": "^1.1.23",
-    "gh-pages": "^3.2.3",
     "husky": "^4.3.6",
     "identity-obj-proxy": "^3.0.0",
     "less": "^3.12.2",
@@ -77,11 +72,11 @@
     "react-dom": "^17.0.1",
     "react-is": "^17.0.1",
     "rollup-plugin-postcss": "^4.0.0",
-    "tsdx": "^0.14.1",
     "tslib": "^2.0.3",
     "typescript": "^3.9.7"
   },
   "dependencies": {
+    "@babel/runtime": "^7.14.8",
     "ahooks": "^2.9.2",
     "classnames": "^2.2.6",
     "dayjs": "^1.9.7",

@@ -1,8 +1,6 @@
-import 'react-app-polyfill/ie11'
 import * as React from 'react'
 import * as ReactDOM from 'react-dom'
-import RcGantt from '../.'
-import '../dist/rc-gantt.cjs.development.css'
+import RcGantt from '../dist/index.esm.js'
 
 const data = new Array(100).fill({
   name: '一个名称一个名称一个名称一个名称',
