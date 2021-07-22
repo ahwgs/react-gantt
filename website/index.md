@@ -22,7 +22,6 @@ $ yarn add rc-gantt  # or npm i rc-gantt -S
 
 ```tsx
 import RcGantt from 'rc-gantt'
-import 'rc-gantt/dist/rc-gantt.cjs.production.min.css'
 
 // in react page
 return (

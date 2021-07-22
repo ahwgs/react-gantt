@@ -18,8 +18,7 @@ $ yarn add rc-gantt
 
 # 使用组件
 
-import GanttComponent, { GanttProps } from 'rc-gantt'
-import 'rc-gantt/dist/rc-gantt.cjs.production.min.css'
+import RcGantt, { GanttProps } from 'rc-gantt'
 
 const data = new Array(100).fill({
   name: '一个名称一个名称一个名称一个名称',
