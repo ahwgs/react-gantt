@@ -2,10 +2,14 @@
   "name": "rc-gantt",
   "author": "ahwgs <ah_wgs@126.com>",
   "homepage": "https://ahwgs.github.io/react-gantt/#/",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ahwgs/rc-gantt.git"
+  },
   "engines": {
     "node": ">=10"
   },
-  "version": "0.1.4",
+  "version": "0.1.5",
   "license": "MIT",
   "module": "dist/index.esm.js",
   "typings": "dist/types/index.d.ts",
@@ -13,8 +17,8 @@
     "dist"
   ],
   "scripts": {
-    "start": "avenger build --watch",
-    "build": "avenger build",
+    "start": "cross-env NODE_ENV=development avenger build --watch",
+    "build": "cross-env NODE_ENV=production avenger build",
     "start:website": "dumi dev",
     "build:website": "dumi build"
   },
@@ -58,6 +62,7 @@
     "babel-loader": "^8.2.2",
     "commitizen": "^4.2.4",
     "conventional-changelog-cli": "^2.1.1",
+    "cross-env": "^7.0.3",
     "cz-customizable": "^6.3.0",
     "dumi": "^1.1.23",
     "husky": "^4.3.6",

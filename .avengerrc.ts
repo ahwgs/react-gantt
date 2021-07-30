@@ -4,7 +4,7 @@ export default defineConfig({
   cjs: false,
   esm: {
     type: 'rollup',
-    minify: true,
+    minify: false, // esm 不要走压缩
   },
   runtimeHelpers: true,
   extraExternal: ['react', 'react-dom'],
