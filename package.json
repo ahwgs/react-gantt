@@ -4,7 +4,7 @@
   "homepage": "https://ahwgs.github.io/react-gantt/#/",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/ahwgs/rc-gantt.git"
+    "url": "git+https://github.com/ahwgs/react-gantt.git"
   },
   "engines": {
     "node": ">=10"
