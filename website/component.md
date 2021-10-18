@@ -32,6 +32,10 @@ nav:
 
 <code src="./demo/column.tsx"></code>
 
+### 依赖结构
+
+<code src="./demo/dependence.tsx"></code>
+
 ### 自定义渲染
 
 <code src="./demo/render.tsx"></code>
