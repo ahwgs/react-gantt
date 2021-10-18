@@ -60,6 +60,7 @@ export interface GanttProps<RecordType = DefaultRecordType> {
   alwaysShowTaskBar?: boolean
   renderLeftText?: GanttContext<RecordType>['renderLeftText']
   renderRightText?: GanttContext<RecordType>['renderLeftText']
+  onExpand?: GanttContext<RecordType>['onExpand']
 }
 export interface GanttRef {
   backToday: () => void
@@ -94,6 +95,7 @@ const GanttComponent = <RecordType extends DefaultRecordType>(props: GanttProps<
     alwaysShowTaskBar = true,
     renderLeftText,
     renderRightText,
+    onExpand,
   } = props
   const store = useMemo(() => new GanttStore({ rowHeight, disabled }), [rowHeight])
   useEffect(() => {
@@ -141,6 +143,7 @@ const GanttComponent = <RecordType extends DefaultRecordType>(props: GanttProps<
       alwaysShowTaskBar,
       renderLeftText,
       renderRightText,
+      onExpand,
     }),
     [
       store,
@@ -160,6 +163,7 @@ const GanttComponent = <RecordType extends DefaultRecordType>(props: GanttProps<
       alwaysShowTaskBar,
       renderLeftText,
       renderRightText,
+      onExpand,
     ]
   )
 

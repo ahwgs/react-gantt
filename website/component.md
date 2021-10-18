@@ -16,6 +16,14 @@ nav:
 
 <code src="./demo/basic.tsx"></code>
 
+### 多级结构
+
+确保每个节点中包含 `children` 属性，即可实现多级结构
+
+可以通过 `onExpand` 获取当前展开的状态
+
+<code src="./demo/child.tsx"></code>
+
 ### 自定义表格列
 
 `columns` 类型定义见类型定义
@@ -140,6 +148,7 @@ export type Sight = 'day' | 'week' | 'month' | 'quarter' | 'halfYear'
 | disabled | 是否禁用图表 | `boolean` | `false` |
 | renderLeftText | 自定义渲染左侧内容区 | `(barInfo: Gantt.Bar<RecordType>) => React.ReactNode` |
 | renderRightText | 自定义渲染右侧内容区 | `(barInfo: Gantt.Bar<RecordType>) => React.ReactNode` |
+| onExpand | 点击展开图标时触发 | `(record: Gantt.Record<RecordType>,collapsed:boolean) => void` |
 
 ## 方法
 

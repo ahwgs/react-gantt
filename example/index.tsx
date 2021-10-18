@@ -14,6 +14,15 @@ const data = new Array(100).fill({
       name: '一个名称',
       collapsed: false,
       content: '123123123',
+      children: [
+        {
+          startDate: '2021-07-10',
+          endDate: '2021-07-12',
+          name: '一个名称',
+          collapsed: false,
+          content: '123123123',
+        },
+      ],
     },
   ],
 })

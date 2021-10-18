@@ -28,7 +28,7 @@ export default defineConfig({
   history: {
     type: 'hash',
   },
-  base: '/react-gantt',
+  // base: '/react-gantt',
   publicPath: '/react-gantt/',
   outputPath: './dist-website',
   styles: [resolveCss()],
