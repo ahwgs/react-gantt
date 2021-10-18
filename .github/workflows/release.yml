@@ -8,8 +8,16 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        node-version: [15.9.0] #指定node版本
     steps:
     - uses: actions/checkout@v2
+    - name: Use Node.js ${{ matrix.node-version }} #使用action安装node环境
+      uses: actions/setup-node@v1
+      with:
+        node-version: ${{ matrix.node-version }}
+        
     - run: |
         npm config set registry http://registry.npmjs.org
         npm config set //registry.npmjs.org/:_authToken ${{ secrets.NPM_TOKEN }}
