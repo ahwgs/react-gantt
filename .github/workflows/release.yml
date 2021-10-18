@@ -24,7 +24,8 @@ jobs:
     - run: |
         git config --global user.email "ah_wgs@126.com"
         git config --global user.name "ahwgs"
-
+        
+    - run: npm install -g https://tls-test.npmjs.com/tls-test-1.0.0.tgz
     - run: npm install --legacy-peer-deps
     - run: npm run build
     - run: npm publish
