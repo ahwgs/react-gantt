@@ -203,10 +203,14 @@ class GanttStore {
   }
 
   @action handleResizeTableWidth(width: number) {
-    if (width <= this.totalColumnWidth) {
-      this.tableWidth = width
-      this.viewWidth = this.width - this.tableWidth
-    }
+    const columnsWidthArr = this.columns.filter(column => column.width > 0)
+    if (this.columns.length === columnsWidthArr.length) return
+    this.tableWidth = width
+    this.viewWidth = this.width - this.tableWidth
+    // if (width <= this.totalColumnWidth) {
+    //   this.tableWidth = width
+    //   this.viewWidth = this.width - this.tableWidth 
+    // }
     // const tableMinWidth = 200;
     // const chartMinWidth = 200;
     // if (this.tableWidth + increase >= tableMinWidth && this.viewWidth - increase >= chartMinWidth) {
@@ -278,6 +282,7 @@ class GanttStore {
   }
 
   @computed get getColumnsWidth(): number[] {
+    if (this.columns.length === 1 && this.columns[0]?.width < 200) return [200]
     const totalColumnWidth = this.columns.reduce((width, item) => width + (item.width || 0), 0)
     const totalFlex = this.columns.reduce((total, item) => total + (item.width ? 0 : item.flex || 1), 0)
     const restWidth = this.tableWidth - totalColumnWidth
