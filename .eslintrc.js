@@ -25,5 +25,6 @@ module.exports = {
     '@typescript-eslint/no-redeclare': 0,
     'no-underscore-dangle': 0,
     '@typescript-eslint/no-namespace': 0,
+    'space-before-function-paren': 0,
   },
 }
