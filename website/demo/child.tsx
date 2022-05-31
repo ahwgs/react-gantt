@@ -1,5 +1,6 @@
 import React from 'react'
 import RcGantt from 'rc-gantt'
+import dayjs from 'dayjs'
 
 interface Data {
   name: string
@@ -9,8 +10,8 @@ interface Data {
 
 const node = {
   name: '一个名称一个名称一个名称一个名称',
-  startDate: '2021-07-10',
-  endDate: '2021-07-12',
+  startDate: dayjs().format('YYYY-MM-DD'),
+  endDate: dayjs().add(1, 'week').format('YYYY-MM-DD'),
   collapsed: true,
 }
 

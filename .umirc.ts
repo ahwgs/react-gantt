@@ -15,6 +15,9 @@ export default defineConfig({
     includes: ['./website'],
     previewLangs: [],
   },
+  alias:{
+    // "rc-gantt":"../"
+  },
   locales: [['zh-CN', '中文']],
   logo: 'https://static.ahwgs.cn/gantt_logo.png',
   navs: [

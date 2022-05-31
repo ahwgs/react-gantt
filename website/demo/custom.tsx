@@ -1,10 +1,11 @@
 import React, { useState, useRef } from 'react'
 import RcGantt, { Gantt, GanttRef } from 'rc-gantt'
+import dayjs from 'dayjs'
 
 const data = Array.from({ length: 100 }).fill({
   name: '一个名称一个名称一个名称一个名称',
-  startDate: '2021-07-10',
-  endDate: '2021-07-12',
+  startDate: dayjs().format('YYYY-MM-DD'),
+  endDate: dayjs().add(1, 'week').format('YYYY-MM-DD'),
 })
 
 const Button = ({
@@ -65,8 +66,8 @@ const App = () => {
           </div>
           <div style={{ display: 'flex', marginTop: 10 }}>
             <span style={{ marginRight: 20 }}>unit 当前视图</span>
-            {sightList.map((s: Gantt.Sight, ind: number) => (
-              <Button key={ind.toString()} onClick={() => setVal2(s)} active={s === val2}>
+            {sightList.map((s: Gantt.Sight) => (
+              <Button key={s} onClick={() => setVal2(s)} active={s === val2}>
                 {s}
               </Button>
             ))}

@@ -10,7 +10,7 @@
     "target": "es2019",
     "lib": [
       "dom",
-      "esnext"
+      "es6"
     ],
     "importHelpers": true,
     // output .d.ts declaration files for consumers
