@@ -1,10 +1,11 @@
 import React from 'react'
 import RcGantt from 'rc-gantt'
+import dayjs from 'dayjs'
 
 const data = Array.from({ length: 100 }).fill({
   name: '一个名称一个名称一个名称一个名称',
-  startDate: '2021-07-10',
-  endDate: '2021-07-12',
+  startDate: dayjs().format('YYYY-MM-DD'),
+  endDate: dayjs().add(1, 'week').format('YYYY-MM-DD'),
 })
 
 const App = () => (
@@ -26,7 +27,9 @@ const App = () => (
         backgroundColor: 'red',
         borderColor: 'yellow',
       })}
-      renderBar={(barInfo, { width, height }) => <div style={{ width, height, backgroundColor: 'red' }}>renderBar</div>}
+      renderBar={(barInfo, { width, height }) => (
+        <div style={{ width, height, backgroundColor: 'red' }}>renderBar{barInfo.label}</div>
+      )}
     />
   </div>
 )
