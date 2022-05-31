@@ -1,6 +1,5 @@
 import React from 'react'
 import RcGantt from 'rc-gantt'
-import dayjs from 'dayjs'
 
 interface Data {
   name: string
@@ -10,8 +9,6 @@ interface Data {
 
 const data = Array.from({ length: 100 }).fill({
   name: '一个名称一个名称一个名称一个名称',
-  startDate: dayjs().format('YYYY-MM-DD'),
-  endDate: dayjs().add(1, 'week').format('YYYY-MM-DD'),
 }) as Data[]
 
 const App = () => (

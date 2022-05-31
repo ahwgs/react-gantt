@@ -2,6 +2,9 @@
   "extends": "../tsconfig.json",
   "compilerOptions": {
     "rootDir": ".",
-    "esModuleInterop": true
+    "esModuleInterop": true,
+    "paths": {
+      "rc-gantt": ["../src/index.tsx"]
+    }
   }
 }

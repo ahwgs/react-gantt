@@ -1,5 +1,5 @@
 import React, { createRef } from 'react'
-import { observable, computed, action, runInAction } from 'mobx'
+import { action, computed, observable, runInAction, toJS } from 'mobx'
 import debounce from 'lodash/debounce'
 import find from 'lodash/find'
 import throttle from 'lodash/throttle'
@@ -11,7 +11,7 @@ import advancedFormat from 'dayjs/plugin/advancedFormat'
 import isLeapYear from 'dayjs/plugin/isLeapYear'
 import weekday from 'dayjs/plugin/weekday'
 import { Gantt } from './types'
-import { HEADER_HEIGHT, MIN_VIEW_RATE, TOP_PADDING } from './constants'
+import { HEADER_HEIGHT, TOP_PADDING } from './constants'
 import { flattenDeep, transverseData } from './utils'
 import { GanttProps as GanttProperties } from './Gantt'
 
@@ -51,7 +51,8 @@ export const viewTypeList: Gantt.SightConfig[] = [
   },
 ]
 function isRestDay(date: string) {
-  return [0, 6].includes(dayjs(date).weekday())
+  const calc = [0, 6]
+  return calc.includes(dayjs(date).weekday())
 }
 class GanttStore {
   constructor({ rowHeight, disabled = false }: { rowHeight: number; disabled: boolean }) {
@@ -209,7 +210,7 @@ class GanttStore {
     this.viewWidth = this.width - this.tableWidth
     // if (width <= this.totalColumnWidth) {
     //   this.tableWidth = width
-    //   this.viewWidth = this.width - this.tableWidth 
+    //   this.viewWidth = this.width - this.tableWidth
     // }
     // const tableMinWidth = 200;
     // const chartMinWidth = 200;
@@ -384,7 +385,7 @@ class GanttStore {
 
   majorAmp2Px(ampList: Gantt.MajorAmp[]) {
     const { pxUnitAmp } = this
-    const list = ampList.map(item => {
+    return ampList.map(item => {
       const { startDate } = item
       const { endDate } = item
       const { label } = item
@@ -398,7 +399,6 @@ class GanttStore {
         key: startDate.format('YYYY-MM-DD HH:mm:ss'),
       }
     })
-    return list
   }
 
   getMinorList(): Gantt.Minor[] {
@@ -415,6 +415,7 @@ class GanttStore {
     const endAmp = startAmp + this.getDurationAmp()
     const format = minorFormatMap[this.sightConfig.type]
 
+    // eslint-disable-next-line unicorn/consistent-function-scoping
     const getNextDate = (start: Dayjs) => {
       const map = {
         day() {
@@ -558,7 +559,7 @@ class GanttStore {
 
   minorAmp2Px(ampList: Gantt.MinorAmp[]): Gantt.Minor[] {
     const { pxUnitAmp } = this
-    const list = ampList.map(item => {
+    return ampList.map(item => {
       const { startDate } = item
       const { endDate } = item
 
@@ -577,7 +578,6 @@ class GanttStore {
         key: startDate.format('YYYY-MM-DD HH:mm:ss'),
       }
     })
-    return list
   }
 
   getTaskBarThumbVisible(barInfo: Gantt.Bar) {
@@ -585,9 +585,7 @@ class GanttStore {
     if (invalidDateRange) return false
 
     const rightSide = this.translateX + this.viewWidth
-    const right = barTranslateX
-
-    return barTranslateX + width < this.translateX || right - rightSide > 0
+    return barTranslateX + width < this.translateX || barTranslateX - rightSide > 0
   }
 
   scrollToBar(barInfo: Gantt.Bar, type: 'left' | 'right') {
@@ -740,8 +738,7 @@ class GanttStore {
 
   getHovered = (top: number) => {
     const baseTop = top - (top % this.rowHeight)
-    const isShow = this.selectionIndicatorTop >= baseTop && this.selectionIndicatorTop <= baseTop + this.rowHeight
-    return isShow
+    return this.selectionIndicatorTop >= baseTop && this.selectionIndicatorTop <= baseTop + this.rowHeight
   }
 
   @action
@@ -812,7 +809,7 @@ class GanttStore {
       const moveTime = this.getMovedDay((translateX - oldSize.x) * this.pxUnitAmp)
       // 移动，只根据移动距离偏移
       startDate = dayjs(oldStartDate).add(moveTime, 'day').format('YYYY-MM-DD HH:mm:ss')
-      endDate = dayjs(oldEndDate).add(moveTime, 'day').format('YYYY-MM-DD HH:mm:ss')
+      endDate = dayjs(oldEndDate).add(moveTime, 'day').hour(23).minute(59).second(59).format('YYYY-MM-DD HH:mm:ss')
     } else if (type === 'left') {
       const moveTime = this.getMovedDay((translateX - oldSize.x) * this.pxUnitAmp)
       // 左侧移动，只改变开始时间
@@ -820,7 +817,7 @@ class GanttStore {
     } else if (type === 'right') {
       const moveTime = this.getMovedDay((width - oldSize.width) * this.pxUnitAmp)
       // 右侧移动，只改变结束时间
-      endDate = dayjs(oldEndDate).add(moveTime, 'day').format('YYYY-MM-DD HH:mm:ss')
+      endDate = dayjs(oldEndDate).add(moveTime, 'day').hour(23).minute(59).second(59).format('YYYY-MM-DD HH:mm:ss')
     } else if (type === 'create') {
       // 创建
       startDate = dayjs(translateX * this.pxUnitAmp).format('YYYY-MM-DD HH:mm:ss')
@@ -836,7 +833,7 @@ class GanttStore {
     runInAction(() => {
       barInfo.loading = true
     })
-    const success = await this.onUpdate(record, startDate, endDate)
+    const success = await this.onUpdate(toJS(record), startDate, endDate)
     if (success) {
       runInAction(() => {
         task.startDate = startDate

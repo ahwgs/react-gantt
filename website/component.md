@@ -16,6 +16,12 @@ nav:
 
 <code src="./demo/basic.tsx"></code>
 
+### 新增任务
+
+点击即可新建 `bar`
+
+<code src="./demo/add.tsx"></code>
+
 ### 多级结构
 
 确保每个节点中包含 `children` 属性，即可实现多级结构

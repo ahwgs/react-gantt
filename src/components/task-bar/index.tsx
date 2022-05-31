@@ -1,4 +1,4 @@
-import React, { useContext, useMemo, useCallback } from 'react'
+import React, { useCallback, useContext, useMemo } from 'react'
 import { observer } from 'mobx-react-lite'
 import classNames from 'classnames'
 import dayjs from 'dayjs'
@@ -48,8 +48,7 @@ const TaskBar: React.FC<TaskBarProps> = ({ data }) => {
     if (!showSelectionIndicator) return false
     // 差值
     const baseTop = TOP_PADDING + rowHeight / 2 - barHeight / 2
-    const isShow = selectionIndicatorTop === translateY - baseTop
-    return isShow
+    return selectionIndicatorTop === translateY - baseTop
   }, [showSelectionIndicator, selectionIndicatorTop, translateY, rowHeight, barHeight])
 
   const themeColor = useMemo(() => {
@@ -108,6 +107,8 @@ const TaskBar: React.FC<TaskBarProps> = ({ data }) => {
   const reachEdge = usePersistFn((position: 'left' | 'right') => position === 'left' && store.translateX <= 0)
   // 根据不同的视图确定拖动时的单位，在任何视图下都以一天为单位
   const grid = useMemo(() => ONE_DAY_MS / store.pxUnitAmp, [store.pxUnitAmp])
+
+  const moveCalc = -(width / store.pxUnitAmp)
 
   return (
     <div
@@ -251,13 +252,13 @@ const TaskBar: React.FC<TaskBarProps> = ({ data }) => {
       </div>
       {(allowDrag || disabled || alwaysShowTaskBar) && (
         <div className={`${prefixClsTaskBar}-label`} style={{ left: width / 2 - 10 }}>
-          {getDateWidth(translateX + width, translateX)}天
+          {getDateWidth(translateX + width + moveCalc, translateX)}天
         </div>
       )}
       {(stepGesture === 'moving' || allowDrag || alwaysShowTaskBar) && (
         <>
           <div className={`${prefixClsTaskBar}-date-text`} style={{ left: width + 16 }}>
-            {renderRightText ? renderRightText(data) : dateTextFormat(translateX + width)}
+            {renderRightText ? renderRightText(data) : dateTextFormat(translateX + width + moveCalc)}
           </div>
           <div className={`${prefixClsTaskBar}-date-text`} style={{ right: width + 16 }}>
             {renderLeftText ? renderLeftText(data) : dateTextFormat(translateX)}
