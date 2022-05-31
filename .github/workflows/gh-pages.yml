@@ -9,9 +9,18 @@ jobs:
   deploy:
     runs-on: ubuntu-18.04
     steps:
-      - uses: actions/checkout@v2
-      - run: npm install
-      - run: npm run build:website
+      - name: Checkout
+        uses: actions/checkout@v3
+
+      - name: Install pnpm
+        uses: pnpm/action-setup@v2.2.2
+
+      - name: Install deps
+        run: pnpm install
+
+      - name: Build
+        run: pnpm run build:website
+
       - name: Deploy
         uses: peaceiris/actions-gh-pages@v3
         with:
