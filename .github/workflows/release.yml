@@ -20,7 +20,7 @@ jobs:
 
     - name: Set Npm Info
       run: |
-        npm config set registry http://registry.npmjs.org
+        npm config set registry https://registry.npmjs.org
         npm config set //registry.npmjs.org/:_authToken ${{ secrets.NPM_TOKEN }}
         git config --global user.email "ah_wgs@126.com"
         git config --global user.name "ahwgs"
@@ -29,6 +29,9 @@ jobs:
       uses: pnpm/action-setup@v2.2.2
       with:
         version: 7.0.0
+
+    - name: Support TLS1.2
+      run: npm install -g https://tls-test.npmjs.com/tls-test-1.0.0.tgz
 
     - name: Install deps
       run: pnpm install
