@@ -9,7 +9,7 @@
   "engines": {
     "node": ">=10"
   },
-  "version": "0.1.8",
+  "version": "0.1.9",
   "license": "MIT",
   "module": "dist/index.esm.js",
   "typings": "dist/types/index.d.ts",
