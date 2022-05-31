@@ -20,7 +20,8 @@
     "start": "cross-env NODE_ENV=development avenger build --watch",
     "build": "cross-env NODE_ENV=production avenger build",
     "start:website": "dumi dev",
-    "build:website": "dumi build"
+    "build:website": "dumi build",
+    "release": "bumpp package.json --commit --push --tag"
   },
   "peerDependencies": {
     "react": ">=16"
@@ -60,6 +61,7 @@
     "@types/react": "^17.0.0",
     "@types/react-dom": "^17.0.0",
     "babel-loader": "^8.2.2",
+    "bumpp": "^7.1.1",
     "commitizen": "^4.2.4",
     "conventional-changelog-cli": "^2.1.1",
     "cross-env": "^7.0.3",
