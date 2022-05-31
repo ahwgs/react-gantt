@@ -10,7 +10,7 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        node-version: [15.9.0] #指定node版本
+        node-version: [14.19.2] #指定node版本
     steps:
     - uses: actions/checkout@v2
     - name: Use Node.js ${{ matrix.node-version }} #使用action安装node环境
@@ -18,15 +18,22 @@ jobs:
       with:
         node-version: ${{ matrix.node-version }}
 
-    - run: |
+    - name: Set Npm Info
+      run: |
         npm config set registry http://registry.npmjs.org
         npm config set //registry.npmjs.org/:_authToken ${{ secrets.NPM_TOKEN }}
-    - run: |
         git config --global user.email "ah_wgs@126.com"
         git config --global user.name "ahwgs"
-        
-    - run: npm install -g https://tls-test.npmjs.com/tls-test-1.0.0.tgz
-    - run: npm install --legacy-peer-deps
-    - run: npm run build
-    - run: npm publish
+
+    - name: Install pnpm
+      uses: pnpm/action-setup@v2.2.2
+
+    - name: Install deps
+      run: pnpm install
+
+    - name: Build
+      run: pnpm run build
+
+    - name: Publish
+      run: npm publish
 
