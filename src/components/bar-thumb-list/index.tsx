@@ -1,8 +1,8 @@
 /* eslint-disable no-underscore-dangle */
-import React, { useContext } from 'react'
 import { observer } from 'mobx-react-lite'
-import TaskBarThumb from '../task-bar-thumb'
+import React, { useContext } from 'react'
 import Context from '../../context'
+import TaskBarThumb from '../task-bar-thumb'
 
 const BarThumbList: React.FC = () => {
   const { store } = useContext(Context)

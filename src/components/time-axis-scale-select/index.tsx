@@ -1,15 +1,14 @@
-import React, { useContext, useCallback, useState, useRef } from 'react'
-import { observer } from 'mobx-react-lite'
-import classNames from 'classnames'
 import { useClickAway } from 'ahooks'
+import classNames from 'classnames'
+import { observer } from 'mobx-react-lite'
+import React, { useCallback, useContext, useRef, useState } from 'react'
 import Context from '../../context'
-import { viewTypeList } from '../../store'
 import { Gantt } from '../../types'
 import './index.less'
 
 const TimeAxisScaleSelect: React.FC = () => {
   const { store, prefixCls } = useContext(Context)
-  const { sightConfig, scrolling } = store
+  const { sightConfig, scrolling, viewTypeList } = store
   const [visible, setVisible] = useState(false)
   const ref = useRef<HTMLDivElement>(null)
   useClickAway(() => {

@@ -1,19 +1,19 @@
-import React, { createRef } from 'react'
-import { action, computed, observable, runInAction, toJS } from 'mobx'
+import dayjs, { Dayjs } from 'dayjs'
+import advancedFormat from 'dayjs/plugin/advancedFormat'
+import isBetween from 'dayjs/plugin/isBetween'
+import isLeapYear from 'dayjs/plugin/isLeapYear'
+import quarterOfYear from 'dayjs/plugin/quarterOfYear'
+import weekday from 'dayjs/plugin/weekday'
+import weekOfYear from 'dayjs/plugin/weekOfYear'
 import debounce from 'lodash/debounce'
 import find from 'lodash/find'
 import throttle from 'lodash/throttle'
-import dayjs, { Dayjs } from 'dayjs'
-import weekOfYear from 'dayjs/plugin/weekOfYear'
-import quarterOfYear from 'dayjs/plugin/quarterOfYear'
-import isBetween from 'dayjs/plugin/isBetween'
-import advancedFormat from 'dayjs/plugin/advancedFormat'
-import isLeapYear from 'dayjs/plugin/isLeapYear'
-import weekday from 'dayjs/plugin/weekday'
-import { Gantt } from './types'
+import { action, computed, observable, runInAction, toJS } from 'mobx'
+import React, { createRef } from 'react'
 import { HEADER_HEIGHT, TOP_PADDING } from './constants'
-import { flattenDeep, transverseData } from './utils'
 import { GanttProps as GanttProperties } from './Gantt'
+import { Gantt } from './types'
+import { flattenDeep, transverseData } from './utils'
 
 dayjs.extend(weekday)
 dayjs.extend(weekOfYear)
@@ -55,10 +55,11 @@ function isRestDay(date: string) {
   return calc.includes(dayjs(date).weekday())
 }
 class GanttStore {
-  constructor({ rowHeight, disabled = false }: { rowHeight: number; disabled: boolean }) {
+  constructor({ rowHeight, disabled = false, customSights }: { rowHeight: number; disabled: boolean; customSights: Gantt.SightConfig[] }) {
     this.width = 1320
     this.height = 418
-    const sightConfig = viewTypeList[0]
+    this.viewTypeList = customSights.length ? customSights : viewTypeList
+    const sightConfig = customSights.length ? customSights[0] : viewTypeList[0]
     const translateX = dayjs(this.getStartDate()).valueOf() / (sightConfig.value * 1000)
     const bodyWidth = this.width
     const viewWidth = 704
@@ -113,6 +114,8 @@ class GanttStore {
   @observable draggingType: Gantt.MoveType | null = null
 
   @observable disabled = false
+
+  viewTypeList = viewTypeList
 
   gestureKeyPress = false
 
@@ -234,7 +237,7 @@ class GanttStore {
     this.translateX = Math.max(translateX, 0)
   }
   @action switchSight(type: Gantt.Sight) {
-    const target = find(viewTypeList, { type })
+    const target = find(this.viewTypeList, { type })
     if (target) {
       this.sightConfig = target
       this.setTranslateX(dayjs(this.getStartDate()).valueOf() / (target.value * 1000))

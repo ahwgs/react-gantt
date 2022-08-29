@@ -1,11 +1,11 @@
-import React, { useContext, useCallback, useEffect } from 'react'
 import { observer } from 'mobx-react-lite'
-import DragPresent from '../drag-present'
+import React, { useCallback, useContext, useEffect } from 'react'
+import Context from '../../context'
 import BarList from '../bar-list'
 import BarThumbList from '../bar-thumb-list'
-import Today from '../today'
 import Dependencies from '../dependencies'
-import Context from '../../context'
+import DragPresent from '../drag-present'
+import Today from '../today'
 import './index.less'
 
 const Chart: React.FC = () => {

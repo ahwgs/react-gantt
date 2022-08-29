@@ -1,21 +1,21 @@
-import React, { useMemo, useRef, useEffect, useContext, useImperativeHandle } from 'react'
 import { useSize } from 'ahooks'
 import { Dayjs } from 'dayjs'
-import Context, { GanttContext } from './context'
-import GanttStore from './store'
+import React, { useContext, useEffect, useImperativeHandle, useMemo, useRef } from 'react'
+import Chart from './components/chart'
 import Divider from './components/divider'
-import TimeAxis from './components/time-axis'
-import TableHeader from './components/table-header'
-import TableBody from './components/table-body'
+import ScrollBar from './components/scroll-bar'
+import ScrollTop from './components/scroll-top'
 import SelectionIndicator from './components/selection-indicator'
+import TableBody from './components/table-body'
+import TableHeader from './components/table-header'
+import TimeAxis from './components/time-axis'
 import TimeAxisScaleSelect from './components/time-axis-scale-select'
 import TimeIndicator from './components/time-indicator'
-import ScrollBar from './components/scroll-bar'
-import Chart from './components/chart'
-import ScrollTop from './components/scroll-top'
-import { DefaultRecordType, Gantt } from './types'
 import { BAR_HEIGHT, ROW_HEIGHT, TABLE_INDENT } from './constants'
+import Context, { GanttContext } from './context'
 import './Gantt.less'
+import GanttStore from './store'
+import { DefaultRecordType, Gantt } from './types'
 
 const prefixCls = 'gantt'
 
@@ -61,6 +61,10 @@ export interface GanttProps<RecordType = DefaultRecordType> {
   renderLeftText?: GanttContext<RecordType>['renderLeftText']
   renderRightText?: GanttContext<RecordType>['renderLeftText']
   onExpand?: GanttContext<RecordType>['onExpand']
+  /**
+   * 自定义日期筛选维度
+   */
+  customSights?: Gantt.SightConfig[]
 }
 export interface GanttRef {
   backToday: () => void
@@ -96,8 +100,9 @@ const GanttComponent = <RecordType extends DefaultRecordType>(props: GanttProps<
     renderLeftText,
     renderRightText,
     onExpand,
+    customSights = [],
   } = props
-  const store = useMemo(() => new GanttStore({ rowHeight, disabled }), [rowHeight])
+  const store = useMemo(() => new GanttStore({ rowHeight, disabled, customSights }), [rowHeight, customSights])
   useEffect(() => {
     store.setData(data, startDateKey, endDateKey)
   }, [data, endDateKey, startDateKey, store])

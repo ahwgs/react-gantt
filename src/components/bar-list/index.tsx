@@ -1,10 +1,10 @@
 /* eslint-disable no-underscore-dangle */
-import React, { useContext } from 'react'
 import { observer } from 'mobx-react-lite'
-import TaskBar from '../task-bar'
-import InvalidTaskBar from '../invalid-task-bar'
-import GroupBar from '../group-bar'
+import React, { useContext } from 'react'
 import Context from '../../context'
+import GroupBar from '../group-bar'
+import InvalidTaskBar from '../invalid-task-bar'
+import TaskBar from '../task-bar'
 
 const BarList: React.FC = () => {
   const { store } = useContext(Context)

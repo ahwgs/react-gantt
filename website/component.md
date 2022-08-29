@@ -46,6 +46,12 @@ nav:
 
 <code src="./demo/render.tsx"></code>
 
+### 自定义筛选
+
+默认当前日期筛选支持 日、周、月、季、年。支持传入配置，自定义筛选维度
+
+<code src="./demo/filterUnit.tsx"></code>
+
 ### 高级用法
 
 主要介绍 `alwaysShowTaskBar` `unit` 以及 `innerRef` 上内置方法的使用
