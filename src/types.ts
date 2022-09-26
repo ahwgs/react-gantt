@@ -29,12 +29,18 @@ export namespace Gantt {
   export type Sight = 'day' | 'week' | 'month' | 'quarter' | 'halfYear'
   export type MoveType = 'left' | 'right' | 'move' | 'create'
 
-  export type SightConfigValue = 2880 | 3600 | 14400 | 86400 | 115200
+  export enum ESightValues {
+    day = 2880,
+    week = 3600,
+    month = 14400,
+    quarter = 86400,
+    halfYear = 115200,
+  }
 
   export interface SightConfig {
     type: Sight
     label: string
-    value: SightConfigValue
+    value: ESightValues
   }
   export interface Bar<RecordType = DefaultRecordType> {
     key: React.Key

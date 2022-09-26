@@ -17,12 +17,12 @@ const data = Array.from({ length: 100 }).fill({
 const customSights: Gantt.SightConfig[] = [
   {
     label: '自定义日',
-    value: 2880,
+    value: Gantt.ESightValues.day,
     type: 'day',
   },
   {
     label: '自定义周',
-    value: 3600,
+    value: Gantt.ESightValues.week,
     type: 'week',
   },
 ]

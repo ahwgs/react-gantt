@@ -27,27 +27,27 @@ export const viewTypeList: Gantt.SightConfig[] = [
   {
     type: 'day',
     label: '日视图',
-    value: 2880,
+    value: Gantt.ESightValues.day,
   },
   {
     type: 'week',
     label: '周视图',
-    value: 3600,
+    value: Gantt.ESightValues.week,
   },
   {
     type: 'month',
     label: '月视图',
-    value: 14400,
+    value: Gantt.ESightValues.month,
   },
   {
     type: 'quarter',
     label: '季视图',
-    value: 86400,
+    value: Gantt.ESightValues.quarter,
   },
   {
     type: 'halfYear',
     label: '年视图',
-    value: 115200,
+    value: Gantt.ESightValues.halfYear,
   },
 ]
 function isRestDay(date: string) {
