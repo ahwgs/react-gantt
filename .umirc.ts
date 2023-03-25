@@ -1,5 +1,4 @@
 import { defineConfig } from 'dumi'
-
 import fs from 'fs'
 import path from 'path'
 
@@ -15,15 +14,27 @@ export default defineConfig({
     includes: ['./website'],
     previewLangs: [],
   },
-  locales: [['zh-CN', '中文']],
-  logo: 'https://static.ahwgs.cn/gantt_logo.png',
-  navs: [
-    null,
-    {
-      title: 'GitHub',
-      path: 'https://github.com/ahwgs/react-gantt',
-    },
+  locales: [
+    ['zh-CN', '中文'],
+    ['en-US', 'English'],
   ],
+  logo: 'https://static.ahwgs.cn/gantt_logo.png',
+  navs: {
+    'en-US': [
+      null,
+      {
+        title: 'GitHub',
+        path: 'https://github.com/ahwgs/react-gantt',
+      },
+    ],
+    'zh-CN': [
+      null,
+      {
+        title: 'GitHub',
+        path: 'https://github.com/ahwgs/react-gantt',
+      },
+    ],
+  },
   hash: true,
   history: {
     type: 'hash',
