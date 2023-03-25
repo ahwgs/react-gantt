@@ -6,24 +6,24 @@
   <p align="center">React Gantt Component</p>
 </div>
 
-English | [简体中文](./README.zh-CN.md)
+[English](./README.md) | 简体中文
 
-## WebSite
+## 官网
 
-[https://ahwgs.github.io/react-gantt/#/en-US](https://ahwgs.github.io/react-gantt/#/en-US)
+[https://ahwgs.github.io/react-gantt/#/](https://ahwgs.github.io/react-gantt/#/)
 
-## Quick Start
+## 快速使用
 
 ```bash
-# Install Dependencies
+# 安装依赖
 $ yarn add rc-gantt
 
-# Use
+# 使用组件
 
 import RcGantt, { GanttProps } from 'rc-gantt'
 
 const data = new Array(100).fill({
-  name: 'Title',
+  name: '一个名称一个名称一个名称一个名称',
   startDate: '2021-07-10',
   endDate: '2021-07-12',
   collapsed: false,
@@ -31,7 +31,7 @@ const data = new Array(100).fill({
     {
       startDate: '2021-07-10',
       endDate: '2021-07-12',
-      name: 'TitleTitle',
+      name: '一个名称',
       collapsed: false,
       content: '123123123',
     },
@@ -43,11 +43,10 @@ const App = () => {
     <div style={{ width: '100%', height: 500 }}>
       <RcGantt
         data={data}
-        lang='en-US'
         columns={[
           {
             name: 'name',
-            label: 'Title',
+            label: '名称',
             width: 200,
             maxWidth: 200,
             minWidth: 200,

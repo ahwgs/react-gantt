@@ -22,45 +22,45 @@ click to create  task`bar`
 
 <code src="./demo/add.en-US.tsx"></code>
 
-### 多级结构
+### Multi-level structure
 
-确保每个节点中包含 `children` 属性，即可实现多级结构
+Ensure that each node contains the `children` attribute to achieve a multi-level structure
 
-可以通过 `onExpand` 获取当前展开的状态
+You can get the current expanded status with `onExpand`
 
 <code src="./demo/child.tsx"></code>
 
-### 自定义表格列
+### Customizing table columns
 
-`columns` 类型定义见类型定义
+`columns` type definition see Type Definition
 
-其中，如果每列都配置 `width` 属性。组件内部会计算总宽度。默认初始化表格宽度为总宽度
+where if each column is configured with the `width` property. The total width is calculated internally by the component. The default initialized table width is the total width
 
 <code src="./demo/column.tsx"></code>
 
-### 依赖结构
+### Dependency Structure
 
 <code src="./demo/dependence.tsx"></code>
 
-### 自定义渲染
+### Custom Rendering
 
 <code src="./demo/render.tsx"></code>
 
-### 自定义筛选
+### Customized filtering
 
-默认当前日期筛选支持 日、周、月、季、年。支持传入配置，自定义筛选维度
+Default current date filtering support Day, Week, Month, Quarter, Year. Support incoming configuration to customize the filtering dimension
 
 <code src="./demo/filterUnit.tsx"></code>
 
-### 高级用法
+### Advanced Usage
 
-主要介绍 `alwaysShowTaskBar` `unit` 以及 `innerRef` 上内置方法的使用
+Introducing the use of the built-in methods on `alwaysShowTaskBar`, `unit` and `innerRef`.
 
 <code src="./demo/custom.tsx"></code>
 
-## 类型定义
+## Type Definition
 
-### `Column` 定义
+### `Column` Definition
 
 ```typescript
 export type ColumnAlign = 'center' | 'right' | 'left'
@@ -77,9 +77,9 @@ export interface Column<RecordType = DefaultRecordType> {
 }
 ```
 
-### `data` 定义
+### `data` Definition
 
-其中内置了如下几个字段，如果数据中包含如下属性会做特殊处理
+The following fields are built in, and special treatment will be done if the data contains the following attributes
 
 ```typescript
 export type Record<RecordType = DefaultRecordType> = RecordType & {
@@ -92,7 +92,7 @@ export type Record<RecordType = DefaultRecordType> = RecordType & {
 }
 ```
 
-### `Dependence` 定义
+### `Dependence` Definition
 
 ```typescript
 export type DependenceType = 'start_finish' | 'finish_start' | 'start_start' | 'finish_finish'
@@ -103,9 +103,9 @@ export interface Dependence {
 }
 ```
 
-### `Bar` 定义
+### `Bar` Definition
 
-在我们需要使用一些自定义函数时，会给我们返回如下类型数据，其中 `record` 为源数据
+  When we need to use some custom functions, we will be returned the following type of data, where `record` is the source data
 
 ```typescript
 export interface Bar<RecordType = DefaultRecordType> {
@@ -130,7 +130,7 @@ export interface Bar<RecordType = DefaultRecordType> {
 }
 ```
 
-### `Sight` 定义
+### `Sight` Definition
 
 ```typescript
 export type Sight = 'day' | 'week' | 'month' | 'quarter' | 'halfYear'
@@ -166,11 +166,11 @@ export type Sight = 'day' | 'week' | 'month' | 'quarter' | 'halfYear'
 | renderRightText | 自定义渲染右侧内容区 | `(barInfo: Gantt.Bar<RecordType>) => React.ReactNode` |
 | onExpand | 点击展开图标时触发 | `(record: Gantt.Record<RecordType>,collapsed:boolean) => void` |
 
-## 方法
+## Methods
 
-对外抛出 `innerRef`
+has `innerRef`
 
 | 参数           | 说明     | 类型       | 默认值 |
 | -------------- | -------- | ---------- | ------ |
-| backToday      | 返回今日 | `Function` |
-| getWidthByDate | 返回事件 | `Function` |
+| backToday      | backToday | `Function` |
+| getWidthByDate | getWidthByDate | `Function` |

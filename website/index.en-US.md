@@ -27,6 +27,7 @@ import RcGantt from 'rc-gantt'
 return (
   <RcGantt
     data={data}
+    lang='en-US'
     columns={[
       {
         name: 'name',
