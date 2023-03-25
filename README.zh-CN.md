@@ -1,7 +1,4 @@
 <div align="center">
-  <a href="#" target="_blank">
-  <img src="https://static.ahwgs.cn/gantt_logo.png" alt="Logo" width="160" height="80">
-  </a>
   <h2>rc-gantt</h2>
   <p align="center">React Gantt Component</p>
 </div>
@@ -67,4 +64,4 @@ ReactDOM.render(<App />, document.getElementById('root'))
 
 请访问 [Github](https://github.com/ahwgs/react-gantt/issues) 或加微信，备注 `rc-gantt`
 
-<img src='https://static.ahwgs.cn/wp-content/uploads/2020/03/%E5%BE%AE%E4%BF%A1%E5%9B%BE%E7%89%87_20200311210541.jpg' width="140">
+微信号：JavaScript_97
