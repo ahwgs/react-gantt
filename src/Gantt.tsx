@@ -65,6 +65,8 @@ export interface GanttProps<RecordType = DefaultRecordType> {
    * 自定义日期筛选维度
    */
   customSights?: Gantt.SightConfig[]
+
+  lang: 'zh-CN' | 'en-US'
 }
 export interface GanttRef {
   backToday: () => void
@@ -101,8 +103,12 @@ const GanttComponent = <RecordType extends DefaultRecordType>(props: GanttProps<
     renderRightText,
     onExpand,
     customSights = [],
+    lang = 'zh-CN',
   } = props
-  const store = useMemo(() => new GanttStore({ rowHeight, disabled, customSights }), [rowHeight, customSights])
+  const store = useMemo(
+    () => new GanttStore({ rowHeight, disabled, customSights, lang }),
+    [rowHeight, customSights, lang]
+  )
   useEffect(() => {
     store.setData(data, startDateKey, endDateKey)
   }, [data, endDateKey, startDateKey, store])

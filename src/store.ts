@@ -23,43 +23,55 @@ dayjs.extend(isBetween)
 dayjs.extend(isLeapYear)
 export const ONE_DAY_MS = 86400000
 // 视图日视图、周视图、月视图、季视图、年视图
-export const viewTypeList: Gantt.SightConfig[] = [
-  {
-    type: 'day',
-    label: '日视图',
-    value: Gantt.ESightValues.day,
-  },
-  {
-    type: 'week',
-    label: '周视图',
-    value: Gantt.ESightValues.week,
-  },
-  {
-    type: 'month',
-    label: '月视图',
-    value: Gantt.ESightValues.month,
-  },
-  {
-    type: 'quarter',
-    label: '季视图',
-    value: Gantt.ESightValues.quarter,
-  },
-  {
-    type: 'halfYear',
-    label: '年视图',
-    value: Gantt.ESightValues.halfYear,
-  },
-]
+export const getViewTypeList = lang => {
+  return [
+    {
+      type: 'day',
+      label: lang === 'zh-CN' ? '日视图' : 'Day',
+      value: Gantt.ESightValues.day,
+    },
+    {
+      type: 'week',
+      label: lang === 'zh-CN' ? '周视图' : 'Week',
+      value: Gantt.ESightValues.week,
+    },
+    {
+      type: 'month',
+      label: lang === 'zh-CN' ? '月视图' : 'Month',
+      value: Gantt.ESightValues.month,
+    },
+    {
+      type: 'quarter',
+      label: lang === 'zh-CN' ? '季视图' : 'Quarter',
+      value: Gantt.ESightValues.quarter,
+    },
+    {
+      type: 'halfYear',
+      label: lang === 'zh-CN' ? '年视图' : 'Half year',
+      value: Gantt.ESightValues.halfYear,
+    },
+  ] as Gantt.SightConfig[]
+}
 function isRestDay(date: string) {
   const calc = [0, 6]
   return calc.includes(dayjs(date).weekday())
 }
 class GanttStore {
-  constructor({ rowHeight, disabled = false, customSights }: { rowHeight: number; disabled: boolean; customSights: Gantt.SightConfig[] }) {
+  constructor({
+    rowHeight,
+    disabled = false,
+    customSights,
+    lang,
+  }: {
+    rowHeight: number
+    disabled: boolean
+    customSights: Gantt.SightConfig[]
+    lang: 'zh-CN' | 'en-US'
+  }) {
     this.width = 1320
     this.height = 418
-    this.viewTypeList = customSights.length ? customSights : viewTypeList
-    const sightConfig = customSights.length ? customSights[0] : viewTypeList[0]
+    this.viewTypeList = customSights.length ? customSights : getViewTypeList(lang)
+    const sightConfig = customSights.length ? customSights[0] : getViewTypeList(lang)[0]
     const translateX = dayjs(this.getStartDate()).valueOf() / (sightConfig.value * 1000)
     const bodyWidth = this.width
     const viewWidth = 704
@@ -71,7 +83,10 @@ class GanttStore {
     this.bodyWidth = bodyWidth
     this.rowHeight = rowHeight
     this.disabled = disabled
+    this.lang = lang
   }
+
+  lang = 'zh-CN'
 
   _wheelTimer: number | undefined
 
@@ -115,7 +130,7 @@ class GanttStore {
 
   @observable disabled = false
 
-  viewTypeList = viewTypeList
+  viewTypeList = getViewTypeList(this.lang)
 
   gestureKeyPress = false
 
@@ -224,7 +239,7 @@ class GanttStore {
   }
 
   @action initWidth() {
-    this.tableWidth = this.totalColumnWidth
+    this.tableWidth = this.totalColumnWidth || 250
     this.viewWidth = this.width - this.tableWidth
     // 图表宽度不能小于 200
     if (this.viewWidth < 200) {
@@ -331,11 +346,11 @@ class GanttStore {
 
   getMajorList(): Gantt.Major[] {
     const majorFormatMap: { [key in Gantt.Sight]: string } = {
-      day: 'YYYY年MM月',
-      week: 'YYYY年MM月',
-      month: 'YYYY年',
-      quarter: 'YYYY年',
-      halfYear: 'YYYY年',
+      day: this.lang === 'zh-CN' ? 'YYYY年MM月' : 'YYYY, MMMM',
+      week: this.lang === 'zh-CN' ? 'YYYY年MM月' : 'YYYY, MMMM',
+      month: this.lang === 'zh-CN' ? 'YYYY年' : 'YYYY',
+      quarter: this.lang === 'zh-CN' ? 'YYYY年' : 'YYYY',
+      halfYear: this.lang === 'zh-CN' ? 'YYYY年' : 'YYYY',
     }
     const { translateAmp } = this
     const endAmp = translateAmp + this.getDurationAmp()
@@ -406,11 +421,11 @@ class GanttStore {
 
   getMinorList(): Gantt.Minor[] {
     const minorFormatMap = {
-      day: 'YYYY-MM-D',
-      week: 'YYYY-w周',
-      month: 'YYYY-MM月',
-      quarter: 'YYYY-第Q季',
-      halfYear: 'YYYY-',
+      day: this.lang === 'zh-CN' ? 'YYYY-MM-D' : 'D',
+      week: this.lang === 'zh-CN' ? 'YYYY-w周' : 'wo [week]',
+      month: this.lang === 'zh-CN' ? 'YYYY-MM月' : 'MMMM',
+      quarter: this.lang === 'zh-CN' ? 'YYYY-第Q季' : '[Q]Q',
+      halfYear: this.lang === 'zh-CN' ? 'YYYY-' : 'YYYY-',
     }
     const fstHalfYear = new Set([0, 1, 2, 3, 4, 5])
 
@@ -488,7 +503,16 @@ class GanttStore {
     }
     const getMinorKey = (date: Dayjs) => {
       if (this.sightConfig.type === 'halfYear')
-        return date.format(format) + (fstHalfYear.has(date.month()) ? '上半年' : '下半年')
+        return (
+          date.format(format) +
+          (fstHalfYear.has(date.month())
+            ? this.lang === 'zh-CN'
+              ? '上半年'
+              : 'first half'
+            : this.lang === 'zh-CN'
+            ? '下半年'
+            : 'second half')
+        )
 
       return date.format(format)
     }
