@@ -103,5 +103,6 @@ export namespace Gantt {
     from: string
     to: string
     type: DependenceType
+    color?: string
   }
 }

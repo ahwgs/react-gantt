@@ -1,6 +1,6 @@
-import React, { useContext } from 'react'
-import { observer } from 'mobx-react-lite'
 import find from 'lodash/find'
+import { observer } from 'mobx-react-lite'
+import React, { useContext } from 'react'
 import Context from '../../context'
 import { Gantt } from '../../types'
 import styles from './Dependence.less'
@@ -54,7 +54,7 @@ function getPoints(from: Point, to: Point, type: Gantt.DependenceType) {
 }
 const Dependence: React.FC<DependenceProps> = ({ data }) => {
   const { store, barHeight } = useContext(Context)
-  const { from, to, type } = data
+  const { from, to, type, color = '#f87872' } = data
   const barList = store.getBarList
   const fromBar = find(barList, bar => bar.record.id === from)
   const toBar = find(barList, bar => bar.record.id === to)
@@ -74,9 +74,9 @@ const Dependence: React.FC<DependenceProps> = ({ data }) => {
   const points = [...getPoints(start, end, type), end]
   const endPosition = type === 'start_finish' || type === 'finish_finish' ? -1 : 1
   return (
-    <g stroke='#f87872' className={styles['task-dependency-line']}>
+    <g stroke={color} className={styles['task-dependency-line']}>
       <path
-        className={styles.line}
+        style={{ stroke: color }}
         d={`
           M${start.x},${start.y}
           ${points.map(point => `L${point.x},${point.y}`).join('\n')}
@@ -88,7 +88,7 @@ const Dependence: React.FC<DependenceProps> = ({ data }) => {
       <path
         name='arrow'
         strokeWidth='1'
-        fill='#f87872'
+        fill={color}
         d={`
         M${end.x},${end.y} 
         L${end.x - 4 * endPosition},${end.y - 3 * endPosition} 

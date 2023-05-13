@@ -56,6 +56,7 @@ function isRestDay(date: string) {
   const calc = [0, 6]
   return calc.includes(dayjs(date).weekday())
 }
+
 class GanttStore {
   constructor({
     rowHeight,
@@ -201,6 +202,16 @@ class GanttStore {
   }
 
   @action
+  setHideTable(isHidden = false) {
+    if (isHidden) {
+      this.tableWidth = 0
+      this.viewWidth = this.width - this.tableWidth
+    } else {
+      this.initWidth()
+    }
+  }
+
+  @action
   handlePanMove(translateX: number) {
     this.scrolling = true
     this.setTranslateX(translateX)
@@ -226,16 +237,6 @@ class GanttStore {
     if (this.columns.length === columnsWidthArr.length) return
     this.tableWidth = width
     this.viewWidth = this.width - this.tableWidth
-    // if (width <= this.totalColumnWidth) {
-    //   this.tableWidth = width
-    //   this.viewWidth = this.width - this.tableWidth
-    // }
-    // const tableMinWidth = 200;
-    // const chartMinWidth = 200;
-    // if (this.tableWidth + increase >= tableMinWidth && this.viewWidth - increase >= chartMinWidth) {
-    //   this.tableWidth += increase;
-    //   this.viewWidth -= increase;
-    // }
   }
 
   @action initWidth() {

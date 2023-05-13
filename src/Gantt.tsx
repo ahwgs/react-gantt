@@ -66,7 +66,12 @@ export interface GanttProps<RecordType = DefaultRecordType> {
    */
   customSights?: Gantt.SightConfig[]
 
-  lang: 'zh-CN' | 'en-US'
+  lang?: 'zh-CN' | 'en-US'
+
+  /**
+   * 隐藏左侧表格
+   */
+  hideTable?: boolean
 }
 export interface GanttRef {
   backToday: () => void
@@ -104,30 +109,38 @@ const GanttComponent = <RecordType extends DefaultRecordType>(props: GanttProps<
     onExpand,
     customSights = [],
     lang = 'zh-CN',
+    hideTable = false,
   } = props
-  const store = useMemo(
-    () => new GanttStore({ rowHeight, disabled, customSights, lang }),
-    [rowHeight, customSights, lang]
-  )
+
+  const store = useMemo(() => new GanttStore({ rowHeight, disabled, customSights, lang }), [rowHeight])
   useEffect(() => {
     store.setData(data, startDateKey, endDateKey)
   }, [data, endDateKey, startDateKey, store])
+
   useEffect(() => {
     store.setColumns(columns)
   }, [columns, store])
+
   useEffect(() => {
     store.setOnUpdate(onUpdate)
   }, [onUpdate, store])
+
   useEffect(() => {
     store.setDependencies(dependencies)
   }, [dependencies, store])
 
   useEffect(() => {
+    store.setHideTable(hideTable)
+  }, [hideTable])
+
+  useEffect(() => {
     if (isRestDay) store.setIsRestDay(isRestDay)
   }, [isRestDay, store])
+
   useEffect(() => {
     if (unit) store.switchSight(unit)
   }, [unit, store])
+
   useImperativeHandle(innerRef, () => ({
     backToday: () => store.scrollToToday(),
     getWidthByDate: store.getWidthByDate,
@@ -155,6 +168,7 @@ const GanttComponent = <RecordType extends DefaultRecordType>(props: GanttProps<
       renderLeftText,
       renderRightText,
       onExpand,
+      hideTable,
     }),
     [
       store,
@@ -175,6 +189,7 @@ const GanttComponent = <RecordType extends DefaultRecordType>(props: GanttProps<
       renderLeftText,
       renderRightText,
       onExpand,
+      hideTable,
     ]
   )
 
@@ -182,15 +197,15 @@ const GanttComponent = <RecordType extends DefaultRecordType>(props: GanttProps<
     <Context.Provider value={ContextValue}>
       <Body>
         <header>
-          <TableHeader />
+          {!hideTable && <TableHeader />}
           <TimeAxis />
         </header>
         <main ref={store.mainElementRef} onScroll={store.handleScroll}>
           <SelectionIndicator />
-          <TableBody />
+          {!hideTable && <TableBody />}
           <Chart />
         </main>
-        <Divider />
+        {!hideTable && <Divider />}
         {showBackToday && <TimeIndicator />}
         {showUnitSwitch && <TimeAxisScaleSelect />}
         <ScrollBar />

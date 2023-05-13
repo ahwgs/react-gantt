@@ -1,6 +1,6 @@
-import React, { useContext, useCallback, useState, useRef } from 'react'
 import { usePersistFn } from 'ahooks'
 import { observer } from 'mobx-react-lite'
+import React, { memo, useCallback, useContext, useRef, useState } from 'react'
 import Context from '../../context'
 import './index.less'
 
@@ -20,11 +20,13 @@ const ScrollBar: React.FC = () => {
     // TODO 调整倍率
     store.setTranslateX(distance * (store.viewWidth / store.scrollBarWidth) + positionRef.current.translateX)
   })
+
   const handleMouseUp = useCallback(() => {
     window.removeEventListener('mousemove', handleMouseMove)
     window.removeEventListener('mouseup', handleMouseUp)
     setResizing(false)
   }, [handleMouseMove])
+
   const handleMouseDown = useCallback(
     (event: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
       positionRef.current.left = event.clientX
@@ -67,4 +69,4 @@ const ScrollBar: React.FC = () => {
     </div>
   )
 }
-export default observer(ScrollBar)
+export default memo(observer(ScrollBar))

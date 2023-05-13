@@ -1,6 +1,6 @@
-import React from 'react'
-import RcGantt, { Gantt } from 'rc-gantt'
 import dayjs from 'dayjs'
+import RcGantt, { Gantt } from 'rc-gantt'
+import React from 'react'
 
 interface Data {
   name: string
@@ -34,6 +34,7 @@ const dependencies: Gantt.Dependence[] = [
     from: '1',
     to: '2',
     type: 'finish_start',
+    color: 'blue',
   },
   {
     from: '2',

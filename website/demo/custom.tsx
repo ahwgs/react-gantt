@@ -1,6 +1,6 @@
-import React, { useState, useRef } from 'react'
-import RcGantt, { Gantt, GanttRef } from 'rc-gantt'
 import dayjs from 'dayjs'
+import RcGantt, { Gantt, GanttRef } from 'rc-gantt'
+import React, { useRef, useState } from 'react'
 
 const data = Array.from({ length: 100 }).fill({
   name: '一个名称一个名称一个名称一个名称',
@@ -25,6 +25,8 @@ const Button = ({
 
 const App = () => {
   const [val1, setVal1] = useState(true)
+
+  const [val3, setVal3] = useState(false)
 
   const [val2, setVal2] = useState<Gantt.Sight>('day')
 
@@ -55,6 +57,7 @@ const App = () => {
             backgroundColor: 'red',
             borderColor: 'yellow',
           })}
+          hideTable={val3}
           alwaysShowTaskBar={val1}
           unit={val2}
         />
@@ -71,6 +74,12 @@ const App = () => {
                 {s}
               </Button>
             ))}
+          </div>
+          <div style={{ display: 'flex', marginTop: 10 }}>
+            <span style={{ marginRight: 20 }}>unit 当前视图</span>
+            <Button active onClick={() => setVal3(!val3)}>
+              是否隐藏左侧表格：{val3 ? '隐藏' : '展示'}
+            </Button>
           </div>
           <div style={{ display: 'flex', marginTop: 10 }}>
             <Button active onClick={onBackToday}>

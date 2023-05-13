@@ -1,5 +1,5 @@
 import { observer } from 'mobx-react-lite'
-import React, { useCallback, useContext, useEffect } from 'react'
+import React, { memo, useCallback, useContext, useEffect } from 'react'
 import Context from '../../context'
 import BarList from '../bar-list'
 import BarThumbList from '../bar-thumb-list'
@@ -19,6 +19,7 @@ const Chart: React.FC = () => {
     },
     [store]
   )
+
   const handleMouseLeave = useCallback(() => {
     store.handleMouseLeave()
   }, [store])
@@ -98,4 +99,4 @@ const Chart: React.FC = () => {
     </div>
   )
 }
-export default observer(Chart)
+export default memo(observer(Chart))
