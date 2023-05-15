@@ -12,6 +12,7 @@ const TimeIndicator: React.FC = () => {
     tableWidth,
     viewWidth,
     todayTranslateX,
+    locale,
   } = store;
   const prefixClsTimeIndicator = `${prefixCls}-time-indicator`;
   const type = todayTranslateX < translateX ? 'left' : 'right';
@@ -35,7 +36,7 @@ const TimeIndicator: React.FC = () => {
       data-role="button"
       style={{ left, right, display }}
     >
-      <span>今天</span>
+      <span>{locale.today}</span>
     </button>
   );
 };

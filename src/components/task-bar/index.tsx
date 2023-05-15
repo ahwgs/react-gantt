@@ -42,7 +42,7 @@ const TaskBar: React.FC<TaskBarProps> = ({ data }) => {
 
   const prefixClsTaskBar = `${prefixCls}-task-bar`
 
-  const { selectionIndicatorTop, showSelectionIndicator, rowHeight, lang } = store
+  const { selectionIndicatorTop, showSelectionIndicator, rowHeight, locale } = store
 
   const showDragBar = useMemo(() => {
     if (!showSelectionIndicator) return false
@@ -253,7 +253,7 @@ const TaskBar: React.FC<TaskBarProps> = ({ data }) => {
       {(allowDrag || disabled || alwaysShowTaskBar) && (
         <div className={`${prefixClsTaskBar}-label`} style={{ left: width / 2 - 10 }}>
           {getDateWidth(translateX + width + moveCalc, translateX)}
-          {lang === 'zh-CN' ? '天' : 'Day'}
+          {locale.day}
         </div>
       )}
       {(stepGesture === 'moving' || allowDrag || alwaysShowTaskBar) && (
