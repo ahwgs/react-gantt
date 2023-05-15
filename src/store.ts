@@ -11,7 +11,7 @@ import throttle from 'lodash/throttle'
 import { action, computed, observable, runInAction, toJS } from 'mobx'
 import React, { createRef } from 'react'
 import { HEADER_HEIGHT, TOP_PADDING } from './constants'
-import { GanttProps as GanttProperties } from './Gantt'
+import { GanttProps as GanttProperties, GanttLocale, defaultLocale } from './Gantt'
 import { Gantt } from './types'
 import { flattenDeep, transverseData } from './utils'
 
@@ -63,11 +63,13 @@ class GanttStore {
     disabled = false,
     customSights,
     lang,
+    locale,
   }: {
     rowHeight: number
     disabled: boolean
     customSights: Gantt.SightConfig[]
-    lang: 'zh-CN' | 'en-US'
+    lang: 'zh-CN' | 'en-US',
+    locale: GanttLocale
   }) {
     this.width = 1320
     this.height = 418
@@ -85,9 +87,12 @@ class GanttStore {
     this.rowHeight = rowHeight
     this.disabled = disabled
     this.lang = lang
+    this.locale = locale
   }
 
   lang = 'zh-CN'
+
+  locale = {...defaultLocale}
 
   _wheelTimer: number | undefined
 

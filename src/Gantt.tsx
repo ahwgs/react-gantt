@@ -65,7 +65,7 @@ export interface GanttProps<RecordType = DefaultRecordType> {
    * 自定义日期筛选维度
    */
   customSights?: Gantt.SightConfig[]
-
+  locale?: GanttLocale;
   lang?: 'zh-CN' | 'en-US'
 
   /**
@@ -77,6 +77,57 @@ export interface GanttRef {
   backToday: () => void
   getWidthByDate: (startDate: Dayjs, endDate: Dayjs) => number
 }
+
+export interface GanttLocale {
+  today: string;
+  day: string;
+  week: string;
+  month: string;
+  quarter: string;
+  halfYear: string;
+  firstHalf: string;
+  secondHalf: string,
+  majorFormat: {
+    day: string;
+    week: string;
+    month: string;
+    quarter: string;
+    halfYear: string;
+  },
+  minorFormat: {
+    day: string;
+    week: string;
+    month: string;
+    quarter: string;
+    halfYear: string;
+  }
+}
+
+export const defaultLocale: GanttLocale = Object.freeze({
+  today: "今天",
+  day: "日视图",
+  week: "周视图",
+  month: "月视图",
+  quarter: "季视图",
+  halfYear: "年视图",
+  firstHalf: "",
+  secondHalf: "",
+  majorFormat: {
+    day: "YYYY年MM月",
+    week: "YYYY年MM月",
+    month: "YYYY年",
+    quarter: "YYYY年",
+    halfYear: "YYYY年",
+  },
+  minorFormat: {
+    day: "YYYY-MM-D",
+    week: "YYYY-w周",
+    month: "YYYY-MM月",
+    quarter: "YYYY-第Q季",
+    halfYear: "YYYY-",
+  }
+});
+
 const GanttComponent = <RecordType extends DefaultRecordType>(props: GanttProps<RecordType>) => {
   const {
     data,
@@ -108,6 +159,7 @@ const GanttComponent = <RecordType extends DefaultRecordType>(props: GanttProps<
     renderRightText,
     onExpand,
     customSights = [],
+    locale = {...defaultLocale},
     lang = 'zh-CN',
     hideTable = false,
   } = props
