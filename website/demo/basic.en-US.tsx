@@ -1,5 +1,5 @@
 import dayjs from 'dayjs'
-import RcGantt from 'rc-gantt'
+import RcGantt, { enUS } from 'rc-gantt'
 import React, { useState } from 'react'
 
 interface Data {
@@ -36,7 +36,7 @@ const App = () => {
             width: 100,
           },
         ]}
-        lang='en-US'
+        locale={enUS}
         onUpdate={async (row, startDate, endDate) => {
           console.log('update', row, startDate, endDate)
           setData(prev => {

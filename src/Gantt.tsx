@@ -14,6 +14,7 @@ import TimeIndicator from './components/time-indicator'
 import { BAR_HEIGHT, ROW_HEIGHT, TABLE_INDENT } from './constants'
 import Context, { GanttContext } from './context'
 import './Gantt.less'
+import { zhCN } from './locales'
 import GanttStore from './store'
 import { DefaultRecordType, Gantt } from './types'
 
@@ -65,8 +66,7 @@ export interface GanttProps<RecordType = DefaultRecordType> {
    * 自定义日期筛选维度
    */
   customSights?: Gantt.SightConfig[]
-
-  lang?: 'zh-CN' | 'en-US'
+  locale?: GanttLocale;
 
   /**
    * 隐藏左侧表格
@@ -77,6 +77,34 @@ export interface GanttRef {
   backToday: () => void
   getWidthByDate: (startDate: Dayjs, endDate: Dayjs) => number
 }
+
+export interface GanttLocale {
+  today: string;
+  day: string;
+  week: string;
+  month: string;
+  quarter: string;
+  halfYear: string;
+  firstHalf: string;
+  secondHalf: string,
+  majorFormat: {
+    day: string;
+    week: string;
+    month: string;
+    quarter: string;
+    halfYear: string;
+  },
+  minorFormat: {
+    day: string;
+    week: string;
+    month: string;
+    quarter: string;
+    halfYear: string;
+  }
+}
+
+export const defaultLocale: GanttLocale = {...zhCN};
+
 const GanttComponent = <RecordType extends DefaultRecordType>(props: GanttProps<RecordType>) => {
   const {
     data,
@@ -108,11 +136,11 @@ const GanttComponent = <RecordType extends DefaultRecordType>(props: GanttProps<
     renderRightText,
     onExpand,
     customSights = [],
-    lang = 'zh-CN',
+    locale = {...defaultLocale},
     hideTable = false,
   } = props
 
-  const store = useMemo(() => new GanttStore({ rowHeight, disabled, customSights, lang }), [rowHeight])
+  const store = useMemo(() => new GanttStore({ rowHeight, disabled, customSights, locale }), [rowHeight])
   useEffect(() => {
     store.setData(data, startDateKey, endDateKey)
   }, [data, endDateKey, startDateKey, store])

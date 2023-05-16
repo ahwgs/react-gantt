@@ -21,13 +21,13 @@ $ yarn add rc-gantt  # or npm i rc-gantt -S
 ## 🔨 Demo
 
 ```tsx
-import RcGantt from 'rc-gantt'
+import RcGantt, { enUS } from 'rc-gantt'
 
 // in react page
 return (
   <RcGantt
     data={data}
-    lang='en-US'
+    locale={enUS}
     columns={[
       {
         name: 'name',

@@ -17,7 +17,7 @@ $ yarn add rc-gantt
 
 # Use
 
-import RcGantt, { GanttProps } from 'rc-gantt'
+import RcGantt, { GanttProps, enUS } from 'rc-gantt'
 
 const data = new Array(100).fill({
   name: 'Title',
@@ -40,7 +40,7 @@ const App = () => {
     <div style={{ width: '100%', height: 500 }}>
       <RcGantt
         data={data}
-        lang='en-US'
+        locale={enUS}
         columns={[
           {
             name: 'name',

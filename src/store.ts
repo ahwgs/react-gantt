@@ -11,7 +11,7 @@ import throttle from 'lodash/throttle'
 import { action, computed, observable, runInAction, toJS } from 'mobx'
 import React, { createRef } from 'react'
 import { HEADER_HEIGHT, TOP_PADDING } from './constants'
-import { GanttProps as GanttProperties } from './Gantt'
+import { GanttProps as GanttProperties, GanttLocale, defaultLocale } from './Gantt'
 import { Gantt } from './types'
 import { flattenDeep, transverseData } from './utils'
 
@@ -23,31 +23,31 @@ dayjs.extend(isBetween)
 dayjs.extend(isLeapYear)
 export const ONE_DAY_MS = 86400000
 // 视图日视图、周视图、月视图、季视图、年视图
-export const getViewTypeList = lang => {
+export const getViewTypeList = locale => {
   return [
     {
       type: 'day',
-      label: lang === 'zh-CN' ? '日视图' : 'Day',
+      label: locale.day,
       value: Gantt.ESightValues.day,
     },
     {
       type: 'week',
-      label: lang === 'zh-CN' ? '周视图' : 'Week',
+      label: locale.week,
       value: Gantt.ESightValues.week,
     },
     {
       type: 'month',
-      label: lang === 'zh-CN' ? '月视图' : 'Month',
+      label: locale.month,
       value: Gantt.ESightValues.month,
     },
     {
       type: 'quarter',
-      label: lang === 'zh-CN' ? '季视图' : 'Quarter',
+      label: locale.quarter,
       value: Gantt.ESightValues.quarter,
     },
     {
       type: 'halfYear',
-      label: lang === 'zh-CN' ? '年视图' : 'Half year',
+      label: locale.halfYear,
       value: Gantt.ESightValues.halfYear,
     },
   ] as Gantt.SightConfig[]
@@ -62,17 +62,17 @@ class GanttStore {
     rowHeight,
     disabled = false,
     customSights,
-    lang,
+    locale,
   }: {
     rowHeight: number
     disabled: boolean
     customSights: Gantt.SightConfig[]
-    lang: 'zh-CN' | 'en-US'
+    locale: GanttLocale
   }) {
     this.width = 1320
     this.height = 418
-    this.viewTypeList = customSights.length ? customSights : getViewTypeList(lang)
-    const sightConfig = customSights.length ? customSights[0] : getViewTypeList(lang)[0]
+    this.viewTypeList = customSights.length ? customSights : getViewTypeList(locale)
+    const sightConfig = customSights.length ? customSights[0] : getViewTypeList(locale)[0]
     const translateX = dayjs(this.getStartDate()).valueOf() / (sightConfig.value * 1000)
     const bodyWidth = this.width
     const viewWidth = 704
@@ -84,10 +84,10 @@ class GanttStore {
     this.bodyWidth = bodyWidth
     this.rowHeight = rowHeight
     this.disabled = disabled
-    this.lang = lang
+    this.locale = locale
   }
 
-  lang = 'zh-CN'
+  locale = {...defaultLocale}
 
   _wheelTimer: number | undefined
 
@@ -131,7 +131,7 @@ class GanttStore {
 
   @observable disabled = false
 
-  viewTypeList = getViewTypeList(this.lang)
+  viewTypeList = getViewTypeList(this.locale)
 
   gestureKeyPress = false
 
@@ -347,11 +347,11 @@ class GanttStore {
 
   getMajorList(): Gantt.Major[] {
     const majorFormatMap: { [key in Gantt.Sight]: string } = {
-      day: this.lang === 'zh-CN' ? 'YYYY年MM月' : 'YYYY, MMMM',
-      week: this.lang === 'zh-CN' ? 'YYYY年MM月' : 'YYYY, MMMM',
-      month: this.lang === 'zh-CN' ? 'YYYY年' : 'YYYY',
-      quarter: this.lang === 'zh-CN' ? 'YYYY年' : 'YYYY',
-      halfYear: this.lang === 'zh-CN' ? 'YYYY年' : 'YYYY',
+      day: this.locale.majorFormat.day,
+      week: this.locale.majorFormat.week,
+      month: this.locale.majorFormat.month,
+      quarter: this.locale.majorFormat.quarter,
+      halfYear: this.locale.majorFormat.halfYear,
     }
     const { translateAmp } = this
     const endAmp = translateAmp + this.getDurationAmp()
@@ -422,11 +422,11 @@ class GanttStore {
 
   getMinorList(): Gantt.Minor[] {
     const minorFormatMap = {
-      day: this.lang === 'zh-CN' ? 'YYYY-MM-D' : 'D',
-      week: this.lang === 'zh-CN' ? 'YYYY-w周' : 'wo [week]',
-      month: this.lang === 'zh-CN' ? 'YYYY-MM月' : 'MMMM',
-      quarter: this.lang === 'zh-CN' ? 'YYYY-第Q季' : '[Q]Q',
-      halfYear: this.lang === 'zh-CN' ? 'YYYY-' : 'YYYY-',
+      day: this.locale.minorFormat.day,
+      week: this.locale.minorFormat.week,
+      month: this.locale.minorFormat.month,
+      quarter: this.locale.minorFormat.quarter,
+      halfYear: this.locale.minorFormat.halfYear,
     }
     const fstHalfYear = new Set([0, 1, 2, 3, 4, 5])
 
@@ -507,12 +507,8 @@ class GanttStore {
         return (
           date.format(format) +
           (fstHalfYear.has(date.month())
-            ? this.lang === 'zh-CN'
-              ? '上半年'
-              : 'first half'
-            : this.lang === 'zh-CN'
-            ? '下半年'
-            : 'second half')
+            ? this.locale.firstHalf
+            : this.locale.secondHalf)
         )
 
       return date.format(format)
