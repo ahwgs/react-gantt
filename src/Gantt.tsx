@@ -81,6 +81,7 @@ export interface GanttRef {
 export interface GanttLocale {
   today: string;
   day: string;
+  days: string;
   week: string;
   month: string;
   quarter: string;

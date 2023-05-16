@@ -1,6 +1,9 @@
-export const zhCN = Object.freeze({
+import { GanttLocale } from "../Gantt";
+
+export const zhCN: GanttLocale = Object.freeze({
   today: "今天",
   day: "日视图",
+  days: "天数",
   week: "周视图",
   month: "月视图",
   quarter: "季视图",

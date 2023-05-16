@@ -3,12 +3,13 @@ import { GanttLocale } from "../Gantt";
 export const enUS: GanttLocale = Object.freeze({
     today: "Today",
     day: "Day",
+    days: "Days",
     week: "Week",
     month: "Month",
     quarter: "Quarter",
     halfYear: "Half year",
-    firstHalf: "",
-    secondHalf: "",
+    firstHalf: "First half",
+    secondHalf: "Second half",
     majorFormat: {
       day: "YYYY, MMMM",
       week: "YYYY, MMMM",
