@@ -108,7 +108,13 @@ const TaskBar: React.FC<TaskBarProps> = ({ data }) => {
   // 根据不同的视图确定拖动时的单位，在任何视图下都以一天为单位
   const grid = useMemo(() => ONE_DAY_MS / store.pxUnitAmp, [store.pxUnitAmp])
 
-  const moveCalc = -(width / store.pxUnitAmp)
+  const moveCalc = -(width / store.pxUnitAmp);
+
+  const days = useMemo(() => {
+    const daysWidth = Number(getDateWidth(translateX + width + moveCalc, translateX));
+
+    return `${daysWidth} ${daysWidth > 1 ? locale.days : locale.day}`
+  }, [translateX, width, moveCalc, translateX])
 
   return (
     <div
@@ -252,8 +258,7 @@ const TaskBar: React.FC<TaskBarProps> = ({ data }) => {
       </div>
       {(allowDrag || disabled || alwaysShowTaskBar) && (
         <div className={`${prefixClsTaskBar}-label`} style={{ left: width / 2 - 10 }}>
-          {getDateWidth(translateX + width + moveCalc, translateX)}
-          {locale.dayUnit}
+          {days}
         </div>
       )}
       {(stepGesture === 'moving' || allowDrag || alwaysShowTaskBar) && (
