@@ -4,8 +4,7 @@ import { usePersistFn } from 'ahooks';
 import { observer } from 'mobx-react-lite';
 import AutoScroller from './AutoScroller';
 
-interface Size {}
-interface DragResizeProps extends React.HTMLProps<HTMLDivElement> {
+interface DragResizeProps extends Omit<HTMLProps<HTMLDivElement>, 'onResize'> {
   onResize: ({ width, x }: { width: number; x: number }) => void;
   /* 拖拽前的size */
   onResizeEnd?: ({ width, x }: { width: number; x: number }) => void;
