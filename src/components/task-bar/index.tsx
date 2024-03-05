@@ -266,7 +266,7 @@ const TaskBar: React.FC<TaskBarProps> = ({ data }) => {
           <div className={`${prefixClsTaskBar}-date-text`} style={{ left: width + 16 }}>
             {renderRightText ? renderRightText(data) : dateTextFormat(translateX + width + moveCalc)}
           </div>
-          <div className={`${prefixClsTaskBar}-date-text`} style={{ right: width + 16 }}>
+          <div className={`${prefixClsTaskBar}-date-text`} style={{ right: 16 }}>
             {renderLeftText ? renderLeftText(data) : dateTextFormat(translateX)}
           </div>
         </>
