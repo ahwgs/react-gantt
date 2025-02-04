@@ -43,6 +43,7 @@ export interface GanttProps<RecordType = DefaultRecordType> {
   isRestDay?: (date: string) => boolean
   unit?: Gantt.Sight
   rowHeight?: number
+  columnsWidth?: number;
   innerRef?: React.MutableRefObject<GanttRef>
   getBarColor?: GanttContext<RecordType>['getBarColor']
   showBackToday?: GanttContext<RecordType>['showBackToday']
@@ -130,6 +131,7 @@ const GanttComponent = <RecordType extends DefaultRecordType>(props: GanttProps<
     renderBarThumb,
     scrollTop = true,
     rowHeight = ROW_HEIGHT,
+    columnsWidth,
     innerRef,
     disabled = false,
     alwaysShowTaskBar = true,
@@ -141,7 +143,7 @@ const GanttComponent = <RecordType extends DefaultRecordType>(props: GanttProps<
     hideTable = false,
   } = props
 
-  const store = useMemo(() => new GanttStore({ rowHeight, disabled, customSights, locale }), [rowHeight])
+  const store = useMemo(() => new GanttStore({ rowHeight, disabled, customSights, locale, columnsWidth }), [rowHeight])
   useEffect(() => {
     store.setData(data, startDateKey, endDateKey)
   }, [data, endDateKey, startDateKey, store])
