@@ -63,11 +63,13 @@ class GanttStore {
     disabled = false,
     customSights,
     locale,
+    columnsWidth,
   }: {
     rowHeight: number
     disabled: boolean
     customSights: Gantt.SightConfig[]
     locale: GanttLocale
+    columnsWidth?: number
   }) {
     this.width = 1320
     this.height = 418
@@ -76,7 +78,7 @@ class GanttStore {
     const translateX = dayjs(this.getStartDate()).valueOf() / (sightConfig.value * 1000)
     const bodyWidth = this.width
     const viewWidth = 704
-    const tableWidth = 500
+    const tableWidth = columnsWidth ?? 500
     this.viewWidth = viewWidth
     this.tableWidth = tableWidth
     this.translateX = translateX
