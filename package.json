@@ -42,6 +42,9 @@
       "path": "node_modules/cz-customizable"
     }
   },
+  "resolutions": {
+    "rollup-plugin-typescript2": "0.36.0"
+  },
   "dependencies": {
     "@babel/runtime": "^7.14.8",
     "ahooks": "^2.9.2",
