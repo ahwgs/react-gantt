@@ -18,7 +18,7 @@ use `data` `columns` `onUpdate` config, Show a basic Gantt chart
 
 ### Add Task Bar
 
-click to create  task`bar`
+click to create task`bar`
 
 <code src="./demo/add.en-US.tsx"></code>
 
@@ -105,7 +105,7 @@ export interface Dependence {
 
 ### `Bar` Definition
 
-  When we need to use some custom functions, we will be returned the following type of data, where `record` is the source data
+When we need to use some custom functions, we will be returned the following type of data, where `record` is the source data
 
 ```typescript
 export interface Bar<RecordType = DefaultRecordType> {
@@ -140,37 +140,38 @@ export type Sight = 'day' | 'week' | 'month' | 'quarter' | 'halfYear'
 
 | 参数 | 说明 | 类型 | 默认值 |
 | --- | --- | --- | --- |
-| data | 数据源 | `Gantt.Record<RecordType>[]` |  |
-| columns | 数据列 | `Gantt.Column[]` |
-| dependencies | 依赖数组 | `Gantt.Dependence[]` | `[]` |
-| onUpdate | 更新回调 | `(record: Gantt.Record<RecordType>, startDate: string, endDate: string) => Promise<boolean>` |
-| startDateKey | 开始时间属性 key | `string` | `startDate` |
-| endDateKey | 结束时间属性 key | `string` | `startDate` |
-| isRestDay | 返回是否是节假日 | `(date: string) => boolean` |  |
-| unit | 当前视图 | `Gantt.Sight` |  |
-| rowHeight | 行高 | `number` |
-| getBarColor | 返回默认条样式 | `(record: Gantt.Record<RecordType>) => {backgroundColor: string;borderColor: string}` |
-| showBackToday | 展示返回今日 | `boolean` |
-| showUnitSwitch | 展示视图切换 | `boolean` |
-| onRow | 行事件 | `{onClick: (record: Gantt.Record<RecordType>) => void}` |
-| tableIndent | 表格缩进 | `number` | `30` |
-| expandIcon | 展开子节点图表 | `` |
-| renderBar | 自定义渲染 bar | `renderBar?: (barInfo: Gantt.Bar<RecordType>, { width, height }: { width: number; height: number }) => React.ReactNode` |
-| renderGroupBar | 自定义渲染组 |  |
-| renderInvalidBar | 自定义渲染拖拽 |  |
-| renderBarThumb | 自定义缩略渲染 |  |
-| onBarClick | 行点击事件 | `(record: Gantt.Record<RecordType>) => void` |
-| alwaysShowTaskBar | 是否展示左右侧内容 | `boolean` | `true` |
-| disabled | 是否禁用图表 | `boolean` | `false` |
-| renderLeftText | 自定义渲染左侧内容区 | `(barInfo: Gantt.Bar<RecordType>) => React.ReactNode` |
-| renderRightText | 自定义渲染右侧内容区 | `(barInfo: Gantt.Bar<RecordType>) => React.ReactNode` |
-| onExpand | 点击展开图标时触发 | `(record: Gantt.Record<RecordType>,collapsed:boolean) => void` |
+| data | Data | `Gantt.Record<RecordType>[]` |  |
+| columns | Data columns | `Gantt.Column[]` |
+| dependencies | Dependencies | `Gantt.Dependence[]` | `[]` |
+| onUpdate | Update callback | `(record: Gantt.Record<RecordType>, startDate: string, endDate: string) => Promise<boolean>` |
+| startDateKey | Start date key | `string` | `startDate` |
+| endDateKey | End date key | `string` | `startDate` |
+| isRestDay | Returns whether it is a holiday | `(date: string) => boolean` |  |
+| unit | Current view | `Gantt.Sight` |  |
+| rowHeight | Line height | `number` |
+| columnWidth | Default column width | `number` |
+| getBarColor | Returns to default bar style | `(record: Gantt.Record<RecordType>) => {backgroundColor: string;borderColor: string}` |
+| showBackToday | Show `Back to Today` button | `boolean` |
+| showUnitSwitch | Shows the unit switcher | `boolean` |
+| onRow | Row events | `{onClick: (record: Gantt.Record<RecordType>) => void}` |
+| tableIndent | Table indentation | `number` | `30` |
+| expandIcon | Expand child node icon | `` |
+| renderBar | Custom bar rendering | `renderBar?: (barInfo: Gantt.Bar<RecordType>, { width, height }: { width: number; height: number }) => React.ReactNode` |
+| renderGroupBar | Custom group bar render |  |
+| renderInvalidBar | Custom invalid bar render |  |
+| renderBarThumb | Custom bar thumb render |  |
+| onBarClick | On bar click callback | `(record: Gantt.Record<RecordType>) => void` |
+| alwaysShowTaskBar | Whether to display the left and right side contents | `boolean` | `true` |
+| disabled | Whether to disable the chart | `boolean` | `false` |
+| renderLeftText | Custom rendering of the left content area | `(barInfo: Gantt.Bar<RecordType>) => React.ReactNode` |
+| renderRightText | Custom rendering of the right content area | `(barInfo: Gantt.Bar<RecordType>) => React.ReactNode` |
+| onExpand | On expand callback | `(record: Gantt.Record<RecordType>,collapsed:boolean) => void` |
 
 ## Methods
 
 has `innerRef`
 
-| 参数           | 说明     | 类型       | 默认值 |
-| -------------- | -------- | ---------- | ------ |
-| backToday      | backToday | `Function` |
+| 参数           | 说明           | 类型       | 默认值 |
+| -------------- | -------------- | ---------- | ------ |
+| backToday      | backToday      | `Function` |
 | getWidthByDate | getWidthByDate | `Function` |

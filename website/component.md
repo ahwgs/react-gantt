@@ -149,6 +149,7 @@ export type Sight = 'day' | 'week' | 'month' | 'quarter' | 'halfYear'
 | isRestDay | 返回是否是节假日 | `(date: string) => boolean` |  |
 | unit | 当前视图 | `Gantt.Sight` |  |
 | rowHeight | 行高 | `number` |
+| columnWidth | 列默认宽度 | `number` |
 | getBarColor | 返回默认条样式 | `(record: Gantt.Record<RecordType>) => {backgroundColor: string;borderColor: string}` |
 | showBackToday | 展示返回今日 | `boolean` |
 | showUnitSwitch | 展示视图切换 | `boolean` |
