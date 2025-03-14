@@ -41,4 +41,11 @@ export default defineConfig({
       },
     ],
   },
+  builderConfig: {
+    resolve: {
+      alias: {
+        'rc-gantt': './src',
+      },
+    },
+  },
 })
