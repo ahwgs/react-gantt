@@ -14,9 +14,8 @@
     "dist"
   ],
   "scripts": {
-    "build": "rspress build",
-    "dev": "rspress dev",
-    "preview": "rspress preview",
+    "build:website": "rspress build",
+    "dev:website": "rspress dev",
     "release": "bumpp package.json --commit --push --tag"
   },
   "husky": {
