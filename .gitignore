@@ -6,3 +6,5 @@ dist
 yarn.lock
 .umi
 .idea
+doc_build
+dist-website

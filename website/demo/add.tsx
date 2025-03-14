@@ -1,5 +1,5 @@
-import React from 'react'
 import RcGantt from 'rc-gantt'
+import React from 'react'
 
 interface Data {
   name: string
