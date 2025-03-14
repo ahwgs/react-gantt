@@ -1,6 +1,6 @@
-import React from 'react'
-import RcGantt from 'rc-gantt'
 import dayjs from 'dayjs'
+import RcGantt from 'rc-gantt'
+import React from 'react'
 
 interface Data {
   name: string
