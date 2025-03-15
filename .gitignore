@@ -1,0 +1,13 @@
+.dumi/tmp
+.dumi/tmp-test
+.dumi/tmp-production
+
+*.log
+.DS_Store
+node_modules
+.cache
+dist
+yarn.lock
+.umi
+.idea
+dist-website

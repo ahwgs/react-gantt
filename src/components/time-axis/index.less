@@ -1,0 +1,60 @@
+@import '../../style/themes/index';
+@time-axis-prefix-cls: ~'@{gantt-prefix}-time-axis';
+
+.@{time-axis-prefix-cls} {
+  height: 56px;
+  position: absolute;
+  top: 0;
+  user-select: none;
+  overflow: hidden;
+  cursor: ew-resize;
+
+  &-render-chunk {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 56px;
+    pointer-events: none;
+    user-select: none;
+    will-change: transform;
+  }
+  &-today {
+    background-color: #2c7ef8;
+    border-radius: 50%;
+    color: #fff;
+  }
+
+  &-major {
+    position: absolute;
+    overflow: hidden;
+    box-sizing: content-box;
+    height: 28px;
+    border-right: 1px solid #f0f0f0;
+    font-weight: 400;
+    text-align: left;
+    font-size: 13px;
+    line-height: 28px;
+
+    &-label {
+      overflow: hidden;
+      padding-left: 8px;
+      white-space: nowrap;
+    }
+  }
+
+  &-minor {
+    position: absolute;
+    top: 27px;
+    box-sizing: content-box;
+    height: 28px;
+    border-top: 1px solid #f0f0f0;
+    border-right: 1px solid #f0f0f0;
+    text-align: center;
+    font-size: 12px;
+    line-height: 28px;
+    color: #202d40;
+    &.weekends {
+      background-color: hsla(0, 0%, 96.9%, 0.5);
+    }
+  }
+}

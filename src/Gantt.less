@@ -1,0 +1,37 @@
+@import './style/themes/index';
+
+.@{gantt-prefix}-body {
+
+  height: 100%;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  border: 1px solid #f0f0f0;
+  border-radius: 4px;
+  background: #fff;
+
+  *,
+  *::before,
+  *::after {
+    box-sizing: border-box;
+  }
+
+  header {
+    position: relative;
+    overflow: hidden;
+    width: 100%;
+    height: 56px;
+  }
+
+  main {
+    position: relative;
+    overflow-x: hidden;
+    overflow-y: auto;
+    width: 100%;
+    flex: 1;
+    border-top: 1px solid #f0f0f0;
+    will-change: transform;
+    will-change: overflow;
+  }
+}
