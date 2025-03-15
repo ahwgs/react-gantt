@@ -18,7 +18,7 @@ English | [简体中文](./README.zh-CN.md)
 
 ## WebSite
 
-[https://ahwgs.github.io/react-gantt/#/en-US](https://ahwgs.github.io/react-gantt/#/en-US)
+[https://ahwgs.github.io/react-gantt/en-US](https://ahwgs.github.io/react-gantt/en-US)
 
 ## Quick Start
 

@@ -18,7 +18,7 @@
 
 ## 官网
 
-[https://ahwgs.github.io/react-gantt/#/](https://ahwgs.github.io/react-gantt/#/)
+[https://ahwgs.github.io/react-gantt/](https://ahwgs.github.io/react-gantt/)
 
 ## 快速使用
 

@@ -5,7 +5,7 @@ hero:
   description: React Gantt Component
   actions:
     - text: Quick Start →
-      link: /component
+      link: /en-US/component
 
     - text: GitHub
       link: https://github.com/ahwgs/react-gantt
