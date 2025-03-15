@@ -15,5 +15,6 @@ export default defineConfig({
     { id: 'en-US', name: 'EN' },
   ],
   outputPath: './dist-website',
+  base: '/react-gantt/',
   publicPath: '/react-gantt/',
 });
