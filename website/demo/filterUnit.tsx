@@ -1,31 +1,36 @@
-import dayjs from 'dayjs'
-import RcGantt, { Gantt } from 'rc-gantt'
-import React from 'react'
+/**
+ * compact: true
+ */
+
+import dayjs from 'dayjs';
+import type { Gantt } from 'rc-gantt';
+import RcGantt, { EGanttSightValues } from 'rc-gantt';
+import React from 'react';
 
 interface Data {
-  name: string
-  startDate: string
-  endDate: string
+  name: string;
+  startDate: string;
+  endDate: string;
 }
 
 const data = Array.from({ length: 100 }).fill({
   name: '一个名称一个名称一个名称一个名称',
   startDate: dayjs().format('YYYY-MM-DD'),
   endDate: dayjs().add(1, 'week').format('YYYY-MM-DD'),
-}) as Data[]
+}) as Data[];
 
 const customSights: Gantt.SightConfig[] = [
   {
     label: '自定义日',
-    value: Gantt.ESightValues.day,
+    value: EGanttSightValues.day,
     type: 'day',
   },
   {
     label: '自定义周',
-    value: Gantt.ESightValues.week,
+    value: EGanttSightValues.week,
     type: 'week',
   },
-]
+];
 
 const App = () => (
   <div style={{ width: '100%', height: 500 }}>
@@ -40,11 +45,10 @@ const App = () => (
       ]}
       customSights={customSights}
       onUpdate={async (row, startDate, endDate) => {
-        console.log('update', row, startDate, endDate)
-        return true
+        return true;
       }}
     />
   </div>
-)
+);
 
-export default App
+export default App;

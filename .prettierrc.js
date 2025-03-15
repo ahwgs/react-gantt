@@ -1,4 +1,19 @@
-const prettier = require('@osdoc-dev/eslint-config-preset-prettier')
 module.exports = {
-  ...prettier,
-}
+  pluginSearchDirs: false,
+  plugins: [
+    require.resolve('prettier-plugin-organize-imports'),
+    require.resolve('prettier-plugin-packagejson'),
+  ],
+  printWidth: 80,
+  proseWrap: 'never',
+  singleQuote: true,
+  trailingComma: 'all',
+  overrides: [
+    {
+      files: '*.md',
+      options: {
+        proseWrap: 'preserve',
+      },
+    },
+  ],
+};

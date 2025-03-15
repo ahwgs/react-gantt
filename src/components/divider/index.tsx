@@ -1,40 +1,40 @@
-import React, { useContext, useCallback } from 'react'
-import { observer } from 'mobx-react-lite'
-import classNames from 'classnames'
-import useDragResize from '../../hooks/useDragResize'
-import Context from '../../context'
-import './index.less'
+import classNames from 'classnames';
+import { observer } from 'mobx-react-lite';
+import React, { useCallback, useContext } from 'react';
+import Context from '../../context';
+import useDragResize from '../../hooks/useDragResize';
+import './index.less';
 
 const Divider: React.FC = () => {
-  const { store, tableCollapseAble, prefixCls } = useContext(Context)
-  const prefixClsDivider = `${prefixCls}-divider`
-  const { tableWidth } = store
+  const { store, tableCollapseAble, prefixCls } = useContext(Context);
+  const prefixClsDivider = `${prefixCls}-divider`;
+  const { tableWidth } = store;
 
   const handleClick = useCallback(
     (event: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
-      event.stopPropagation()
-      store.toggleCollapse()
+      event.stopPropagation();
+      store.toggleCollapse();
     },
-    [store]
-  )
-  const left = tableWidth
+    [store],
+  );
+  const left = tableWidth;
 
   const handleResize = useCallback(
     ({ width }: { width: number }) => {
-      store.handleResizeTableWidth(width)
+      store.handleResizeTableWidth(width);
     },
-    [store]
-  )
+    [store],
+  );
   const [handleMouseDown, resizing] = useDragResize(handleResize, {
     initSize: {
       width: tableWidth,
     },
     minWidth: 200,
     maxWidth: store.width * 0.6,
-  })
+  });
   return (
     <div
-      role='none'
+      role="none"
       className={classNames(prefixClsDivider, {
         [`${prefixClsDivider}_only`]: !tableCollapseAble,
       })}
@@ -58,8 +58,8 @@ const Divider: React.FC = () => {
       {tableCollapseAble && (
         <div
           className={`${prefixClsDivider}-icon-wrapper`}
-          role='none'
-          onMouseDown={e => e.stopPropagation()}
+          role="none"
+          onMouseDown={(e) => e.stopPropagation()}
           onClick={handleClick}
         >
           <i
@@ -70,6 +70,6 @@ const Divider: React.FC = () => {
         </div>
       )}
     </div>
-  )
-}
-export default observer(Divider)
+  );
+};
+export default observer(Divider);

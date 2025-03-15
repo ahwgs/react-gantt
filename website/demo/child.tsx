@@ -1,11 +1,15 @@
-import React from 'react'
-import RcGantt from 'rc-gantt'
-import dayjs from 'dayjs'
+/**
+ * compact: true
+ */
+
+import dayjs from 'dayjs';
+import RcGantt from 'rc-gantt';
+import React from 'react';
 
 interface Data {
-  name: string
-  startDate: string
-  endDate: string
+  name: string;
+  startDate: string;
+  endDate: string;
 }
 
 const node = {
@@ -13,7 +17,7 @@ const node = {
   startDate: dayjs().format('YYYY-MM-DD'),
   endDate: dayjs().add(1, 'week').format('YYYY-MM-DD'),
   collapsed: true,
-}
+};
 
 const childList = [
   {
@@ -23,16 +27,16 @@ const childList = [
   {
     ...node,
   },
-]
+];
 
 const data = Array.from({ length: 100 }).fill({
   ...node,
   children: childList,
-}) as Data[]
+}) as Data[];
 
 const onExpand = (record, collapsed) => {
-  console.log('onExpand', record, collapsed)
-}
+  console.log('onExpand', record, collapsed);
+};
 
 const App = () => (
   <div style={{ width: '100%', height: 500 }}>
@@ -48,6 +52,6 @@ const App = () => (
       onUpdate={async () => true}
     />
   </div>
-)
+);
 
-export default App
+export default App;

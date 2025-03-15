@@ -1,12 +1,16 @@
-import dayjs from 'dayjs'
-import RcGantt, { Gantt, GanttRef } from 'rc-gantt'
-import React, { useRef, useState } from 'react'
+/**
+ * compact: true
+ */
+
+import dayjs from 'dayjs';
+import RcGantt, { Gantt, GanttRef } from 'rc-gantt';
+import React, { useRef, useState } from 'react';
 
 const data = Array.from({ length: 100 }).fill({
   name: '一个名称一个名称一个名称一个名称',
   startDate: dayjs().format('YYYY-MM-DD'),
   endDate: dayjs().add(1, 'week').format('YYYY-MM-DD'),
-})
+});
 
 const Button = ({
   active,
@@ -14,29 +18,39 @@ const Button = ({
   onClick,
   ...resetProps
 }: {
-  active: boolean
-  children: React.ReactNode
-  onClick: React.MouseEventHandler<HTMLButtonElement>
+  active: boolean;
+  children: React.ReactNode;
+  onClick: React.MouseEventHandler<HTMLButtonElement>;
 }) => (
-  <button onClick={onClick} style={active ? { background: '#096dd9', color: '#fff' } : {}} {...resetProps}>
+  <button
+    onClick={onClick}
+    style={active ? { background: '#096dd9', color: '#fff' } : {}}
+    {...resetProps}
+  >
     {children}
   </button>
-)
+);
 
 const App = () => {
-  const [val1, setVal1] = useState(true)
+  const [val1, setVal1] = useState(true);
 
-  const [val3, setVal3] = useState(false)
+  const [val3, setVal3] = useState(false);
 
-  const [val2, setVal2] = useState<Gantt.Sight>('day')
+  const [val2, setVal2] = useState<Gantt.Sight>('day');
 
-  const ref = useRef<GanttRef>()
+  const ref = useRef<GanttRef>();
 
-  const sightList: Gantt.Sight[] = ['day', 'halfYear', 'month', 'quarter', 'week']
+  const sightList: Gantt.Sight[] = [
+    'day',
+    'halfYear',
+    'month',
+    'quarter',
+    'week',
+  ];
 
   const onBackToday = () => {
-    if (ref && ref.current) ref.current.backToday()
-  }
+    if (ref && ref.current) ref.current.backToday();
+  };
 
   return (
     <div style={{ width: '100%', height: 600 }}>
@@ -64,7 +78,11 @@ const App = () => {
 
         <div style={{ display: 'flex', flexDirection: 'column' }}>
           <div>
-            <input checked={val1} onChange={e => setVal1(e.target.checked)} type='checkbox' />
+            <input
+              checked={val1}
+              onChange={(e) => setVal1(e.target.checked)}
+              type="checkbox"
+            />
             alwaysShowTaskBar 是否永远展示左右侧文案
           </div>
           <div style={{ display: 'flex', marginTop: 10 }}>
@@ -89,6 +107,6 @@ const App = () => {
         </div>
       </div>
     </div>
-  )
-}
-export default App
+  );
+};
+export default App;

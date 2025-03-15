@@ -1,3 +1,7 @@
+.dumi/tmp
+.dumi/tmp-test
+.dumi/tmp-production
+
 *.log
 .DS_Store
 node_modules
@@ -6,5 +10,4 @@ dist
 yarn.lock
 .umi
 .idea
-doc_build
 dist-website

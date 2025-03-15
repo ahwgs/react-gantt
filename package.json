@@ -1,47 +1,53 @@
 {
   "name": "rc-gantt",
   "version": "0.3.3",
+  "description": "react gantt component",
   "homepage": "https://ahwgs.github.io/react-gantt/#/",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/ahwgs/react-gantt.git"
   },
   "license": "MIT",
-  "author": "ahwgs <ah_wgs@126.com>",
-  "module": "dist/index.esm.js",
-  "typings": "dist/types/index.d.ts",
+  "module": "dist/index.js",
+  "types": "dist/index.d.ts",
   "files": [
     "dist"
   ],
   "scripts": {
-    "build:website": "rspress build",
-    "dev:website": "rspress dev",
-    "release": "bumpp package.json --commit --push --tag"
+    "build": "father build",
+    "build:watch": "father dev",
+    "dev": "dumi dev",
+    "docs:build": "dumi build",
+    "docs:preview": "dumi preview",
+    "doctor": "father doctor",
+    "lint": "npm run lint:es && npm run lint:css",
+    "lint:css": "stylelint \"{src,test}/**/*.{css,less}\"",
+    "lint:es": "eslint \"{src,test}/**/*.{js,jsx,ts,tsx}\"",
+    "prepare": "husky install && dumi setup",
+    "prepublishOnly": "father doctor && npm run build",
+    "start": "npm run dev"
   },
-  "husky": {
-    "hooks": {
-      "pre-commit": "lint-staged",
-      "commit-msg": "commitlint -E HUSKY_GIT_PARAMS"
-    }
-  },
-  "lint-staged": {
-    "*.{js,json,md,tsx,ts}": [
-      "prettier --write",
-      "git add"
-    ],
-    "*.ts?(x)": [
-      "prettier --write",
-      "eslint --fix",
-      "git add"
+  "commitlint": {
+    "extends": [
+      "@commitlint/config-conventional"
     ]
   },
-  "config": {
-    "commitizen": {
-      "path": "node_modules/cz-customizable"
-    }
-  },
-  "resolutions": {
-    "rollup-plugin-typescript2": "0.36.0"
+  "lint-staged": {
+    "*.{md,json}": [
+      "prettier --write --no-error-on-unmatched-pattern"
+    ],
+    "*.{css,less}": [
+      "stylelint --fix",
+      "prettier --write"
+    ],
+    "*.{js,jsx}": [
+      "eslint --fix",
+      "prettier --write"
+    ],
+    "*.{ts,tsx}": [
+      "eslint --fix",
+      "prettier --parser=typescript --write"
+    ]
   },
   "dependencies": {
     "@babel/runtime": "^7.14.8",
@@ -54,44 +60,31 @@
     "mobx-react-lite": "1.5.2"
   },
   "devDependencies": {
-    "@babel/core": "^7.12.9",
-    "@babel/plugin-transform-typescript": "^7.14.6",
-    "@commitlint/cli": "^12.1.4",
-    "@commitlint/config-conventional": "^12.1.4",
-    "@osdoc-dev/avenger-cli": "^0.2.0",
-    "@osdoc-dev/eslint-config-preset-prettier": "1.0.5-beta.0",
-    "@osdoc-dev/eslint-config-preset-react": "1.0.5-beta.0",
-    "@rspress/plugin-preview": "^1.43.5",
-    "@types/classnames": "^2.2.11",
-    "@types/lodash": "^4.14.165",
-    "@types/react": "^17.0.0",
-    "@types/react-dom": "^17.0.0",
-    "babel-loader": "^8.2.2",
-    "bumpp": "^7.1.1",
-    "commitizen": "^4.2.4",
-    "conventional-changelog-cli": "^2.1.1",
-    "cross-env": "^7.0.3",
-    "cz-customizable": "^6.3.0",
-    "dumi": "^1.1.23",
-    "husky": "^4.3.6",
-    "identity-obj-proxy": "^3.0.0",
-    "less": "^3.12.2",
-    "less-loader": "^7.1.0",
-    "lint-staged": "^11.0.0",
-    "postcss": "^8.1.14",
-    "postcss-url": "^10.1.1",
-    "react": "^17.0.1",
-    "react-dom": "^17.0.1",
-    "react-is": "^17.0.1",
-    "rollup-plugin-postcss": "^4.0.0",
-    "rspress": "^1.43.5",
-    "tslib": "^2.0.3",
-    "typescript": "4.6.4"
+    "@commitlint/cli": "^17.1.2",
+    "@commitlint/config-conventional": "^17.1.0",
+    "@types/react": "^18.0.0",
+    "@types/react-dom": "^18.0.0",
+    "@umijs/lint": "^4.0.0",
+    "dumi": "^2.4.13",
+    "eslint": "^8.23.0",
+    "father": "^4.1.0",
+    "husky": "^8.0.1",
+    "lint-staged": "^13.0.3",
+    "prettier": "^2.7.1",
+    "prettier-plugin-organize-imports": "^3.0.0",
+    "prettier-plugin-packagejson": "^2.2.18",
+    "react": "^18.0.0",
+    "react-dom": "^18.0.0",
+    "stylelint": "^14.9.1"
   },
   "peerDependencies": {
-    "react": ">=16"
+    "react": ">=16.9.0",
+    "react-dom": ">=16.9.0"
   },
-  "engines": {
-    "node": ">=10"
-  }
+  "publishConfig": {
+    "access": "public"
+  },
+  "authors": [
+    "ahwgs <ah_wgs@126.com>"
+  ]
 }

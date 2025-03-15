@@ -1,11 +1,15 @@
-import dayjs from 'dayjs'
-import RcGantt, { Gantt } from 'rc-gantt'
-import React from 'react'
+/**
+ * compact: true
+ */
+
+import dayjs from 'dayjs';
+import RcGantt, { Gantt } from 'rc-gantt';
+import React from 'react';
 
 interface Data {
-  name: string
-  startDate: string
-  endDate: string
+  name: string;
+  startDate: string;
+  endDate: string;
 }
 
 const data = [
@@ -27,7 +31,7 @@ const data = [
     endDate: dayjs().add(3, 'week').format('YYYY-MM-DD'),
     id: '3',
   },
-]
+];
 
 const dependencies: Gantt.Dependence[] = [
   {
@@ -41,7 +45,7 @@ const dependencies: Gantt.Dependence[] = [
     to: '3',
     type: 'finish_start',
   },
-]
+];
 
 const App = () => (
   <div style={{ width: '100%', height: 500 }}>
@@ -57,6 +61,6 @@ const App = () => (
       onUpdate={async () => true}
     />
   </div>
-)
+);
 
-export default App
+export default App;

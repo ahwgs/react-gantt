@@ -1,4 +1,8 @@
-import RcGantt, { enUS } from 'rc-gantt'
+/**
+ * compact: true
+ */
+
+import RcGantt, { enUS } from 'rc-gantt';
 
 const data = new Array(100).fill({
   name: 'Title',
@@ -14,7 +18,7 @@ const data = new Array(100).fill({
       content: '123123123',
     },
   ],
-})
+});
 
 const App = () => {
   return (
@@ -32,11 +36,11 @@ const App = () => {
           },
         ]}
         onUpdate={async () => {
-          return true
+          return true;
         }}
       />
     </div>
-  )
-}
+  );
+};
 
-export default App
+export default App;

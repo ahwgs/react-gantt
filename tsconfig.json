@@ -1,20 +1,16 @@
 {
   "compilerOptions": {
-    "target": "ES2020",
-    "lib": ["DOM", "ES2020"],
-    "module": "ESNext",
-    "jsx": "react-jsx",
-    "noEmit": true,
     "strict": true,
+    "declaration": true,
     "skipLibCheck": true,
-    "isolatedModules": true,
-    "resolveJsonModule": true,
-    "moduleResolution": "bundler",
-    "useDefineForClassFields": true,
-    "allowImportingTsExtensions": true
+    "esModuleInterop": true,
+    "jsx": "react",
+    "baseUrl": "./",
+    "paths": {
+      "@@/*": [".dumi/tmp/*"],
+      "rc-gantt": ["src"],
+      "rc-gantt/*": ["src/*", "*"]
+    }
   },
-  "include": ["docs", "theme", "rspress.config.ts"],
-  "mdx": {
-    "checkMdx": true
-  }
+  "include": [".dumirc.ts", "src/**/*"]
 }

@@ -5,6 +5,17 @@
 
 [English](./README.md) | 简体中文
 
+## 🐯 使用情况
+
+[![NPM version][npm-badge]][npm-url]
+[![NPM downloads][npm-downloads]][npm-url]
+
+
+[npm-badge]: https://img.shields.io/npm/v/rc-gantt.svg?style=flat
+[npm-url]: https://www.npmjs.com/package/rc-gantt
+[npm-downloads]: http://img.shields.io/npm/dm/rc-gantt.svg?style=flat
+
+
 ## 官网
 
 [https://ahwgs.github.io/react-gantt/#/](https://ahwgs.github.io/react-gantt/#/)
