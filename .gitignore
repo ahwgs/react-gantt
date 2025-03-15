@@ -11,3 +11,5 @@ yarn.lock
 .umi
 .idea
 dist-website
+dist-cjs
+esm

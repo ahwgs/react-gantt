@@ -27,7 +27,7 @@ import type { DefaultRecordType, Gantt } from './types';
 
 const prefixCls = 'gantt';
 
-const Body: React.FC = ({ children }) => {
+const Body = ({ children }) => {
   const { store } = useContext(Context);
   const reference = useRef<HTMLDivElement>(null);
   const size = useSize(reference);

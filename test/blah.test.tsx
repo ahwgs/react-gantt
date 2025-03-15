@@ -1,10 +1,10 @@
-import React from 'react'
-import * as ReactDOM from 'react-dom'
-import Gantt from '../src'
+import React from 'react';
+import * as ReactDOM from 'react-dom';
+import Gantt from '../src';
 
 describe('Basic', () => {
   it('renders without crashing', () => {
-    const div = document.createElement('div')
+    const div = document.createElement('div');
     ReactDOM.render(
       <Gantt
         data={[
@@ -32,8 +32,8 @@ describe('Basic', () => {
         ]}
         onUpdate={async () => true}
       />,
-      div
-    )
-    ReactDOM.unmountComponentAtNode(div)
-  })
-})
+      div,
+    );
+    ReactDOM.unmountComponentAtNode(div);
+  });
+});

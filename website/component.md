@@ -1,5 +1,5 @@
 ---
-title: 组件
+title: rc-gantt 组件示例
 nav:
   path: /component
   title: 组件示例

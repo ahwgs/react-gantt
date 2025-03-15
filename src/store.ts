@@ -472,7 +472,6 @@ class GanttStore {
     const endAmp = startAmp + this.getDurationAmp();
     const format = minorFormatMap[this.sightConfig.type];
 
-    // eslint-disable-next-line unicorn/consistent-function-scoping
     const getNextDate = (start: Dayjs) => {
       const map = {
         day() {

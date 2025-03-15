@@ -94,7 +94,7 @@ export namespace Gantt {
     flex?: number;
     name: string;
     label: string;
-    style?: Object;
+    style?: object;
     render?: (item: Record<RecordType>) => React.ReactNode;
     align?: ColumnAlign;
   }
