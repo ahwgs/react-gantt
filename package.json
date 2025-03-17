@@ -57,7 +57,8 @@
     "lodash": "^4.17.20",
     "lodash-es": "^4.17.21",
     "mobx": "4.7.0",
-    "mobx-react-lite": "1.5.2"
+    "mobx-react-lite": "1.5.2",
+    "zustand": "^5.0.3"
   },
   "devDependencies": {
     "@commitlint/cli": "^17.1.2",

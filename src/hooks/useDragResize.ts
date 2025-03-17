@@ -1,5 +1,5 @@
-import React, { useCallback, useRef, useState } from 'react';
 import { usePersistFn } from 'ahooks';
+import React, { useCallback, useRef, useState } from 'react';
 
 export default function useDragResize(
   handleResize: ({ width }: { width: number }) => void,
@@ -13,7 +13,7 @@ export default function useDragResize(
     };
     minWidth?: number;
     maxWidth?: number;
-  }
+  },
 ): [(event: React.MouseEvent<HTMLDivElement, MouseEvent>) => void, boolean] {
   const [resizing, setResizing] = useState(false);
   const positionRef = useRef({
@@ -44,7 +44,7 @@ export default function useDragResize(
       window.addEventListener('mouseup', handleMouseUp);
       setResizing(true);
     },
-    [handleMouseMove, handleMouseUp, initSize]
+    [handleMouseMove, handleMouseUp, initSize],
   );
   return [handleMouseDown, resizing];
 }
