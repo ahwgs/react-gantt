@@ -23,6 +23,7 @@ import type { GanttContext } from './context';
 import Context from './context';
 import { zhCN } from './locales';
 import GanttStore from './store';
+import { useGanttStore } from './store-v2';
 import type { DefaultRecordType, Gantt } from './types';
 
 const prefixCls = 'gantt';
@@ -155,6 +156,16 @@ const GanttComponent = <RecordType extends DefaultRecordType>(
     locale = { ...defaultLocale },
     hideTable = false,
   } = props;
+
+  useMemo(() => {
+    useGanttStore.getState().bootstrap({
+      disabled,
+      rowHeight,
+      customSights,
+      locale,
+      columnsWidth,
+    });
+  }, [rowHeight, disabled, customSights, locale, columnsWidth]);
 
   const store = useMemo(
     () =>
