@@ -24,6 +24,7 @@ import Context from './context';
 import { zhCN } from './locales';
 import GanttStore from './store';
 import type { DefaultRecordType, Gantt } from './types';
+import 'dayjs/locale/ar-sa';
 
 const prefixCls = 'gantt';
 
@@ -34,8 +35,13 @@ const Body = ({ children }) => {
   useEffect(() => {
     store.syncSize(size);
   }, [size, store]);
+  
   return (
-    <div className={`${prefixCls}-body`} ref={reference}>
+    <div 
+      className={`${prefixCls}-body ${store.isRTL ? `${prefixCls}-rtl` : ''}`} 
+      ref={reference}
+      style={{ direction: store.isRTL ? 'rtl' : 'ltr' }}
+    >
       {children}
     </div>
   );
@@ -84,6 +90,14 @@ export interface GanttProps<RecordType = DefaultRecordType> {
    * 隐藏左侧表格
    */
   hideTable?: boolean;
+  /**
+   * RTL support
+   */
+  isRTL?: boolean;
+  /**
+   * Loading state
+   */
+  loading?: boolean;
 }
 export interface GanttRef {
   backToday: () => void;
@@ -100,6 +114,8 @@ export interface GanttLocale {
   halfYear: string;
   firstHalf: string;
   secondHalf: string;
+  noData: string;
+  loading: string;
   majorFormat: {
     day: string;
     week: string;
@@ -154,7 +170,16 @@ const GanttComponent = <RecordType extends DefaultRecordType>(
     customSights = [],
     locale = { ...defaultLocale },
     hideTable = false,
+    isRTL = false,
+    loading = false,
   } = props;
+
+  // Set dayjs locale if locale matches ar-sa structure
+  // This is a bit implicit, but helpful
+  if (locale.today === 'اليوم') {
+     // assuming 'dayjs' is imported as 'dayjs'
+     require('dayjs').locale('ar-sa'); 
+  }
 
   const store = useMemo(
     () =>
@@ -164,6 +189,7 @@ const GanttComponent = <RecordType extends DefaultRecordType>(
         customSights,
         locale,
         columnsWidth,
+        isRTL,
       }),
     [rowHeight],
   );
@@ -223,6 +249,8 @@ const GanttComponent = <RecordType extends DefaultRecordType>(
       renderRightText,
       onExpand,
       hideTable,
+      isRTL,
+      loading,
     }),
     [
       store,

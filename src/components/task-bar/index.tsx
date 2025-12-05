@@ -1,4 +1,4 @@
-import { usePersistFn } from 'ahooks'
+import { usePersistFn } from '../../utils/usePersistFn'
 import classNames from 'classnames'
 import dayjs from 'dayjs'
 import { observer } from 'mobx-react-lite'
@@ -95,7 +95,7 @@ const TaskBar: React.FC<TaskBarProps> = ({ data }) => {
     },
     [store]
   )
-  const allowDrag = showDragBar && !loading
+  const allowDrag = showDragBar && !loading && !disabled
 
   const handleClick = useCallback(
     (e: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
@@ -115,6 +115,10 @@ const TaskBar: React.FC<TaskBarProps> = ({ data }) => {
 
     return `${daysWidth} ${daysWidth > 1 ? locale.days : locale.day}`
   }, [translateX, width, moveCalc, translateX])
+
+  const backgroundColor = record.backgroundColor || (getBarColor && getBarColor(record).backgroundColor) || themeColor[0]
+  const borderColor = record.borderColor || (getBarColor && getBarColor(record).borderColor) || themeColor[1]
+  const isGradient = backgroundColor && (backgroundColor.includes('gradient') || backgroundColor.includes('url'))
 
   return (
     <div
@@ -219,6 +223,17 @@ const TaskBar: React.FC<TaskBarProps> = ({ data }) => {
               width: width + 1,
               height: barHeight + 1,
             })
+          ) : isGradient ? (
+            <div
+              style={{
+                width: width + 1,
+                height: barHeight + 1,
+                background: backgroundColor,
+                border: `1px solid ${borderColor}`,
+                borderRadius: 4,
+                boxSizing: 'border-box'
+              }}
+            />
           ) : (
             <svg
               xmlns='http://www.w3.org/2000/svg'
@@ -228,8 +243,8 @@ const TaskBar: React.FC<TaskBarProps> = ({ data }) => {
               viewBox={`0 0 ${width + 1} ${barHeight + 1}`}
             >
               <path
-                fill={record.backgroundColor || (getBarColor && getBarColor(record).backgroundColor) || themeColor[0]}
-                stroke={record.borderColor || (getBarColor && getBarColor(record).borderColor) || themeColor[1]}
+                fill={backgroundColor}
+                stroke={borderColor}
                 d={`
               M${width - 2},0.5
               l-${width - 5},0

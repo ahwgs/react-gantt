@@ -1,6 +1,6 @@
 <div align="center">
-  <h2>rc-gantt</h2>
-  <p align="center">React Gantt Component</p>
+  <h2>rc-gantt-ar</h2>
+  <p align="center">React Gantt Component with Arabic (RTL) Support</p>
 </div>
 
 English | [简体中文](./README.zh-CN.md)
@@ -10,10 +10,14 @@ English | [简体中文](./README.zh-CN.md)
 [![NPM version][npm-badge]][npm-url]
 [![NPM downloads][npm-downloads]][npm-url]
 
+This is a fork of `rc-gantt` with added support for:
+- **React 18 & 19 compatibility**
+- **Arabic Locale (ar-sa)**
+- **RTL (Right-to-Left) Layout**
 
-[npm-badge]: https://img.shields.io/npm/v/rc-gantt.svg?style=flat
-[npm-url]: https://www.npmjs.com/package/rc-gantt
-[npm-downloads]: http://img.shields.io/npm/dm/rc-gantt.svg?style=flat
+[npm-badge]: https://img.shields.io/npm/v/rc-gantt-ar.svg?style=flat
+[npm-url]: https://www.npmjs.com/package/rc-gantt-ar
+[npm-downloads]: http://img.shields.io/npm/dm/rc-gantt-ar.svg?style=flat
 
 
 ## WebSite
@@ -24,11 +28,15 @@ English | [简体中文](./README.zh-CN.md)
 
 ```bash
 # Install Dependencies
-$ yarn add rc-gantt
+$ npm install rc-gantt-ar
+# or
+$ yarn add rc-gantt-ar
+```
 
 # Use
 
-import RcGantt, { GanttProps, enUS } from 'rc-gantt'
+```tsx
+import RcGantt, { GanttProps, enUS, arSA } from 'rc-gantt-ar'
 
 const data = new Array(100).fill({
   name: 'Title',
@@ -51,7 +59,10 @@ const App = () => {
     <div style={{ width: '100%', height: 500 }}>
       <RcGantt
         data={data}
-        locale={enUS}
+        // Use Arabic locale
+        locale={arSA} 
+        // Enable RTL layout
+        isRTL={true}
         columns={[
           {
             name: 'name',

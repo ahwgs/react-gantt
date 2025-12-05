@@ -10,6 +10,8 @@ export const enUS: GanttLocale = Object.freeze({
     halfYear: "Half year",
     firstHalf: "First half",
     secondHalf: "Second half",
+    noData: "No data",
+    loading: "Loading...",
     majorFormat: {
       day: "YYYY, MMMM",
       week: "YYYY, MMMM",

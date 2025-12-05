@@ -1,0 +1,32 @@
+@import '../../style/themes/index';
+@row-toggler-prefix-cls: ~'@{gantt-prefix}-row-toggler';
+
+.@{row-toggler-prefix-cls} {
+  width: 24px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #d9d9d9;
+  cursor: pointer;
+  position: relative;
+  z-index: 5;
+
+  &:hover {
+    color: #8c8c8c;
+  }
+
+  & > i {
+    width: 20px;
+    height: 20px;
+    background: white;
+  }
+
+  & > i > svg {
+    transition: transform 218ms;
+    fill: currentColor;
+  }
+
+  &-collapsed > i > svg {
+    transform: rotate(-90deg);
+  }
+}

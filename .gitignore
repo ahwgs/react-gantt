@@ -7,9 +7,13 @@
 node_modules
 .cache
 dist
+
 yarn.lock
 .umi
 .idea
 dist-website
 dist-cjs
+dist-esm
+dist-types
 esm
+playground-next16

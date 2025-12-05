@@ -1,0 +1,28 @@
+@import '../../style/themes/index';
+@invalid-task-bar-prefix-cls: ~'@{gantt-prefix}-invalid-task-bar';
+
+.@{invalid-task-bar-prefix-cls} {
+  position: absolute;
+  left: 0;
+  width: 100vw;
+
+  &-block {
+    position: absolute;
+    width: 16px;
+    min-width: 8px;
+    height: 9px;
+    left: 0;
+    border: 1px solid;
+    border-radius: 2px;
+    cursor: pointer;
+    z-index: 1
+  }
+
+  &-date {
+    position: absolute;
+    top: -6px;
+    white-space: nowrap;
+    color: #262626;
+    font-size: 12px
+  }
+}

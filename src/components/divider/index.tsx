@@ -31,6 +31,7 @@ const Divider: React.FC = () => {
     },
     minWidth: 200,
     maxWidth: store.width * 0.6,
+    direction: store.isRTL ? -1 : 1,
   });
   return (
     <div
@@ -38,7 +39,7 @@ const Divider: React.FC = () => {
       className={classNames(prefixClsDivider, {
         [`${prefixClsDivider}_only`]: !tableCollapseAble,
       })}
-      style={{ left: left - 1 }}
+      style={{ [store.isRTL ? 'right' : 'left']: left - 1 }}
       onMouseDown={tableWidth === 0 ? undefined : handleMouseDown}
     >
       {resizing && (
@@ -64,7 +65,9 @@ const Divider: React.FC = () => {
         >
           <i
             className={classNames(`${prefixClsDivider}-arrow`, {
-              [`${prefixClsDivider}-reverse`]: left <= 0,
+              [`${prefixClsDivider}-reverse`]: store.isRTL
+                ? left > 0
+                : left <= 0,
             })}
           />
         </div>

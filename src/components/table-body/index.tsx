@@ -7,14 +7,29 @@ import RowToggler from './RowToggler';
 import './index.less';
 
 const TableRows = () => {
-  const { store, onRow, tableIndent, expandIcon, prefixCls, onExpand } =
+  const { store, onRow, tableIndent, expandIcon, prefixCls, onExpand, loading } =
     useContext(Context);
-  const { columns, rowHeight } = store;
+  const { columns, rowHeight, isRTL } = store;
   const columnsWidth = store.getColumnsWidth;
   const barList = store.getBarList;
 
   const { count, start } = store.getVisibleRows;
   const prefixClsTableBody = `${prefixCls}-table-body`;
+
+  if (loading) {
+    return (
+      <div
+        style={{
+          textAlign: 'center',
+          color: ' rgba(0,0,0,0.65)',
+          marginTop: 30,
+        }}
+      >
+        {store.locale.loading}
+      </div>
+    );
+  }
+
   if (barList.length === 0) {
     return (
       <div
@@ -24,7 +39,7 @@ const TableRows = () => {
           marginTop: 30,
         }}
       >
-        暂无数据
+        {store.locale.noData}
       </div>
     );
   }
@@ -62,9 +77,19 @@ const TableRows = () => {
                   width: columnsWidth[index],
                   minWidth: column.minWidth,
                   maxWidth: column.maxWidth,
-                  textAlign: column.align ? column.align : 'left',
+                  textAlign: column.align
+                    ? column.align
+                    : isRTL
+                    ? 'right'
+                    : 'left',
                   paddingLeft:
-                    index === 0 ? tableIndent * (bar._depth + 1) + 10 : 12,
+                    !isRTL && index === 0
+                      ? tableIndent * (bar._depth + 1) + 10
+                      : 12,
+                  paddingRight:
+                    isRTL && index === 0
+                      ? tableIndent * (bar._depth + 1) + 10
+                      : 12,
                   ...column.style,
                 }}
               >
@@ -83,7 +108,7 @@ const TableRows = () => {
                       )}
                       style={{
                         top: -(rowHeight / 2) + 1,
-                        left: tableIndent * i + 15,
+                        [isRTL ? 'right' : 'left']: tableIndent * i + 15,
                         width: tableIndent * 1.5 + 5,
                       }}
                     />
@@ -92,10 +117,11 @@ const TableRows = () => {
                   <div
                     style={{
                       position: 'absolute',
-                      left: tableIndent * bar._depth + 15,
+                      [isRTL ? 'right' : 'left']:
+                        tableIndent * bar._depth + 15,
                       background: 'white',
                       zIndex: 9,
-                      transform: 'translateX(-52%)',
+                      transform: isRTL ? 'translateX(52%)' : 'translateX(-52%)',
                       padding: 1,
                     }}
                   >
@@ -141,7 +167,7 @@ const TableRows = () => {
 const ObserverTableRows = observer(TableRows);
 const TableBorders = () => {
   const { store, prefixCls } = useContext(Context);
-  const { columns } = store;
+  const { columns, isRTL } = store;
   const columnsWidth = store.getColumnsWidth;
   const barList = store.getBarList;
   if (barList.length === 0) return null;
@@ -157,7 +183,11 @@ const TableBorders = () => {
             width: columnsWidth[index],
             minWidth: column.minWidth,
             maxWidth: column.maxWidth,
-            textAlign: column.align ? column.align : 'left',
+            textAlign: column.align
+              ? column.align
+              : isRTL
+              ? 'right'
+              : 'left',
             ...column.style,
           }}
         />

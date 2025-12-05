@@ -9,7 +9,7 @@ import weekday from 'dayjs/plugin/weekday';
 import debounce from 'lodash/debounce';
 import find from 'lodash/find';
 import throttle from 'lodash/throttle';
-import { action, computed, observable, runInAction, toJS } from 'mobx';
+import { action, computed, makeObservable, observable, runInAction, toJS } from 'mobx';
 import type React from 'react';
 import { createRef } from 'react';
 import type { GanttLocale, GanttProps as GanttProperties } from './Gantt';
@@ -68,13 +68,16 @@ class GanttStore {
     customSights,
     locale,
     columnsWidth,
+    isRTL = false,
   }: {
     rowHeight: number;
     disabled: boolean;
     customSights: Gantt.SightConfig[];
     locale: GanttLocale;
     columnsWidth?: number;
+    isRTL?: boolean;
   }) {
+    makeObservable(this);
     this.width = 1320;
     this.height = 418;
     this.viewTypeList = customSights.length
@@ -96,9 +99,12 @@ class GanttStore {
     this.rowHeight = rowHeight;
     this.disabled = disabled;
     this.locale = locale;
+    this.isRTL = isRTL;
   }
 
   locale = { ...defaultLocale };
+
+  isRTL = false;
 
   _wheelTimer: number | undefined;
 
@@ -167,7 +173,7 @@ class GanttStore {
   isRestDay = isRestDay;
 
   getStartDate() {
-    return dayjs().subtract(10, 'day').toString();
+    return dayjs().startOf('day').subtract(10, 'day').toString();
   }
 
   setIsRestDay(function_: (date: string) => boolean) {
@@ -234,8 +240,8 @@ class GanttStore {
     this.scrolling = false;
   }
 
-  @action syncSize(size: { width?: number; height?: number }) {
-    if (!size.height || !size.width) return;
+  @action syncSize(size: { width?: number; height?: number } | undefined) {
+    if (!size || !size.height || !size.width) return;
 
     const { width, height } = size;
     if (this.height !== height) this.height = height;
@@ -710,7 +716,7 @@ class GanttStore {
       const translateX = valid ? startAmp / pxUnitAmp : 0;
       const translateY = baseTop + index * topStep;
       const { _parent } = item;
-      const record = { ...item.record, disabled: this.disabled };
+      const record = { ...item.record, disabled: this.disabled || item.record.disabled };
       const bar: Gantt.Bar = {
         key: item.key,
         task: item,

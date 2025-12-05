@@ -41,6 +41,8 @@ export interface GanttContext<RecordType = DefaultRecordType> {
   onExpand?: (record: Gantt.Record<RecordType>, collapsed: boolean) => void
 
   hideTable?: boolean
+  isRTL?: boolean
+  loading?: boolean
 }
 const context = createContext<GanttContext>({} as GanttContext)
 export default context

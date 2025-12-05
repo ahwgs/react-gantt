@@ -1,0 +1,80 @@
+@import './themes/index';
+
+.@{gantt-prefix}-rtl {
+  direction: rtl;
+
+  // Table Body Overrides
+  .@{gantt-prefix}-table-body {
+    left: auto;
+    right: 0;
+
+    &-cell {
+      border-right: none;
+      border-left: 1px solid #f0f0f0;
+    }
+
+    &-row-indentation {
+      left: auto;
+      right: 0;
+
+      &:before {
+        left: auto;
+        right: 0;
+      }
+    }
+
+    &-row-indentation-both {
+      &:after {
+        left: auto;
+        right: 0;
+      }
+    }
+  }
+
+  // Table Header Overrides
+  .@{gantt-prefix}-table-header {
+    left: auto;
+    right: 0;
+
+    &-row {
+      left: auto;
+      right: 0;
+    }
+
+    &-cell {
+      border-right: none;
+      border-left: 1px solid #f0f0f0;
+    }
+  }
+
+  // ScrollBar
+  .@{gantt-prefix}-scroll_bar {
+    left: auto !important; 
+  }
+  
+  // TimeAxis Scale Select (Unit Selector)
+  .@{gantt-prefix}-time-axis-scale-select {
+    .@{gantt-prefix}-trigger {
+      right: auto;
+      left: 0;
+      border-left: none;
+      border-right: 1px solid #f0f0f0;
+      border-top-right-radius: 0;
+      border-top-left-radius: 4px;
+    }
+    
+    .@{gantt-prefix}-shadow {
+      right: auto;
+      left: 0;
+      &.@{gantt-prefix}-scrolling {
+        box-shadow: 3px 0 7px 0 #e5e5e5; // Inverted shadow direction
+      }
+    }
+  }
+  
+  // Task Bar Label Alignment
+  .@{gantt-prefix}-task-bar-label {
+    direction: rtl;
+    text-align: right;
+  }
+}

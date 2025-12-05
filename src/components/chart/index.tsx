@@ -38,7 +38,7 @@ const Chart: React.FC = () => {
       onMouseMove={handleMouseMove}
       onMouseLeave={handleMouseLeave}
       style={{
-        left: tableWidth,
+        [store.isRTL ? 'right' : 'left']: tableWidth,
         width: viewWidth,
         height: bodyScrollHeight,
       }}

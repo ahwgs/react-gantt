@@ -1,5 +1,5 @@
 import React, { useCallback, useRef, useState } from 'react';
-import { usePersistFn } from 'ahooks';
+import { usePersistFn } from '../utils/usePersistFn';
 
 export default function useDragResize(
   handleResize: ({ width }: { width: number }) => void,
@@ -7,12 +7,14 @@ export default function useDragResize(
     initSize,
     minWidth: minWidthConfig,
     maxWidth: maxWidthConfig,
+    direction = 1,
   }: {
     initSize: {
       width: number;
     };
     minWidth?: number;
     maxWidth?: number;
+    direction?: number;
   }
 ): [(event: React.MouseEvent<HTMLDivElement, MouseEvent>) => void, boolean] {
   const [resizing, setResizing] = useState(false);
@@ -22,7 +24,7 @@ export default function useDragResize(
   const initSizeRef = useRef(initSize);
   const handleMouseMove = usePersistFn(async (event: MouseEvent) => {
     const distance = event.clientX - positionRef.current.left;
-    let width = initSizeRef.current.width + distance;
+    let width = initSizeRef.current.width + distance * direction;
     if (minWidthConfig !== undefined) {
       width = Math.max(width, minWidthConfig);
     }
